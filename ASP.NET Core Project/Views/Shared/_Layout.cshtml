@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>@ViewBag.Title</title>
+    </head>
+    <body>
+        <header>
+            <h1>Tomas homepage</h1>
+            <div class="menu">
+                <a asp-controller="Home" asp-action="Index">Home</a>
+                <a asp-controller="Home" asp-action="About">About</a>
+                <a asp-controller="Home" asp-action="Contact">Contact</a>
+                <a asp-controller="Home" asp-action="Projects">Projects</a>
+            </div>
+        </header>
+        <main>
+            <div class="container">
+                @RenderBody()
+            </div>
+        </main>
+        <footer>
+            @DateTime.Now.ToShortDateString() Tomas Varo
+        </footer>
+    </body>
+</html>
