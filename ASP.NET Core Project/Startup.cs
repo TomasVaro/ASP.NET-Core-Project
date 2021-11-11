@@ -35,8 +35,11 @@ namespace ASP.NET_Core_Project
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}"
-                );
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(
+                    name: "doctor",
+                    pattern: "FeverCheck",
+                    defaults: new {controller = "Doctor", action = "FeverCheck"});
             });
         }
     }
