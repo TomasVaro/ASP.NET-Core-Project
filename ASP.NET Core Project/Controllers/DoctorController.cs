@@ -9,10 +9,6 @@ namespace ASP.NET_Core_Project.Controllers
 {
     public class DoctorController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
         public IActionResult FeverCheck()
         {
             return View();

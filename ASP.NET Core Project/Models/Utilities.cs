@@ -38,5 +38,33 @@ namespace ASP.NET_Core_Project.Models
             }
             return message;
         }
+        static int counter;
+        public static int RndNr()
+        {
+            Random random = new Random();
+            int rndNr = random.Next(1, 101);
+            counter = 0;
+            return rndNr;
+        }
+        public static string[] CheckNumber(int guessedNr, int rndNr)
+        {
+            string[] message = new string[3];
+            counter++;
+            message[1] = counter.ToString();
+            if (guessedNr == rndNr)
+            {                
+                message[0] = "Congratulations! You guessed the right number! You can start guessing again.";
+                message[2] = "EndGame";
+            }
+            else if (guessedNr > rndNr)
+            {
+                message[0] = "Your guess is to high. Try again!";
+            }
+            else
+            {
+                message[0] = "You guess is to low. Try again!";
+            }   
+            return message;
+        }
     }
 }
