@@ -1,11 +1,13 @@
-﻿@{
+﻿@model Person
+@{
     ViewData["Title"] = "ListOfPeople";
 }
 
-<h1>People Index</h1>
+<h2>People Index</h2>
 
-<p>Search people by name or city:</p>
-<form>
+<p><b>Search people by name or city:</b></p>
+<form asp-controller="People" asp-action="FilterPeople" method="post">
+    @Html.AntiForgeryToken()
     <label for="name">Name:</label><br>
     <input type="text" id="name" name="name"><br>
     <label for="city">City:</label><br>
@@ -14,27 +16,35 @@
 </form>
 <br>
 <br>
-<p>Add a person to the list:</p>
-<form>
+<p><b>Add a person to the list:</b></p>
+<form asp-controller="People" asp-action="CreatePerson" method="post" role="form">
+    @Html.AntiForgeryToken()
     <label for="name">Name:</label><br>
-    <input type="text" id="name" name="name"><br>
-    <label for="phone">Phonenumber:</label><br>
-    <input type="text" id="phone" name="phone"><br>
+    <input type="text" id="name" name="Name"><br>
+    <label for="phone">Phone number:</label><br>
+    <input type="text" id="phone" name="PhoneNumber"><br>
     <label for="city">City:</label><br>
-    <input type="text" id="city" name="city"><br>
+    <input type="text" id="city" name="City"><br>
     <input type="submit" value="Submit">
 </form>
 <br>
 <br>
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Phone nr</th>
-        <th>City</th>
-    </tr>
-    <tr>
-        <td>Tomas</td>
-        <td>072</td>
-        <td>Göteborg</td>
-    </tr>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Phonenr</th>
+            <th>City</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var person in Person.personList)
+        {
+            <tr>
+                <td>@person.Name</td>
+                <td>@person.PhoneNumber</td>
+                <td>@person.City.</td>
+            </tr>
+        }
+    </tbody>
 </table>
