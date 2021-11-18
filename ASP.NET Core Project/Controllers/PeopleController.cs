@@ -9,41 +9,64 @@ namespace ASP.NET_Core_Project.Controllers
 {
     public class PeopleController : Controller
     {
-        //public IActionResult Index()
-        //{
-            
-
-        //    return View();
-        //}
-        public IActionResult ListOfPeople(List<Person> people)
+        public IActionResult ListOfPeople()
         {
-            if (Person.personList.Count < 1)
+            PersonEdit personMemory = new PersonEdit();
+            PeopleViewModel PeopleListViewModel = new PeopleViewModel() { PersonListView = personMemory.ReadPerson()};
+            if (PeopleListViewModel.PersonListView.Count == 0 || PeopleListViewModel.PersonListView == null)
             {
-                Person.CreateListOfPersons();
+                personMemory.SeedPersons();
             }
-            Person person = new Person();
-
-            //foreach (Person p in people)
-            //{
-            //    person.Name = p.Name;
-            //    person.PhoneNumber = p.PhoneNumber;
-            //    person.City = p.City;
-            //    return View(person);
-            //}
-
-
-            return View(person);
+            return View(PeopleListViewModel);
         }
 
-        public IActionResult FilterPeople()
+        [HttpPost]
+        public IActionResult ListOfPeople(PeopleViewModel viewModel)
         {
-            return View();
+            PersonEdit personMemory = new PersonEdit();
+            viewModel.PersonListView.Clear();
+
+            foreach (Person p in personMemory.ReadPerson())
+            {
+                if (p.Name.Contains(viewModel.FilterString, StringComparison.OrdinalIgnoreCase) ||
+                    p.City.Contains(viewModel.FilterString, StringComparison.OrdinalIgnoreCase))
+                {
+                    viewModel.PersonListView.Add(p);
+                }
+            }
+            return View(viewModel);
         }
 
-        public IActionResult CreatePerson(Person person)
+        [HttpPost]
+        public IActionResult CreatePerson(CreatePersonViewModel createPersonViewModel)
         {
-            List<Person> people = CreatePersonViewModel.AddPeopleToList(person);            
-            return RedirectToAction("ListOfPeople", people);
+            PeopleViewModel newViewModel = new PeopleViewModel();
+            PersonEdit personMemory = new PersonEdit();
+            if (ModelState.IsValid)
+            {
+                newViewModel.Name = createPersonViewModel.Name;
+                newViewModel.Phone = createPersonViewModel.Phone;
+                newViewModel.City = createPersonViewModel.City;
+                newViewModel.PersonListView = personMemory.ReadPerson();
+
+                personMemory.CreatePerson(createPersonViewModel.Name, createPersonViewModel.Phone, createPersonViewModel.City);
+                ViewBag.Message = "Successfully added person";
+                return View("ListOfPeople", newViewModel);
+            }
+            else
+            {
+                ViewBag.Message = "Failed to add person: " + ModelState.Values;
+                return View("ListOfPeople", newViewModel);
+            }
+        }
+
+        public IActionResult DeletePerson(int id)
+        {
+            PersonEdit personMemory = new PersonEdit();
+            Person targetPerson = personMemory.ReadPerson(id);
+            personMemory.DeletePerson(targetPerson);
+            return RedirectToAction("ListOfPeople");
         }
     }
 }
+ 

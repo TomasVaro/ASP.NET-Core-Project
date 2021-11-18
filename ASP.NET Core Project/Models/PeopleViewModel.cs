@@ -5,8 +5,14 @@ using System.Threading.Tasks;
 
 namespace ASP.NET_Core_Project.Models
 {
-    // container for the information you need in your people view
-    public class PeopleViewModel
+    // Container for the information needed in people view
+    public class PeopleViewModel : CreatePersonViewModel
     {
+        public List<Person> PersonListView { get; set; }
+        public string FilterString { get; set; }
+        public PeopleViewModel()
+        {
+            PersonListView = new List<Person>();
+        }   
     }
 }

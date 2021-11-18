@@ -1,50 +1,64 @@
-﻿@model Person
+﻿@model PeopleViewModel
 @{
-    ViewData["Title"] = "ListOfPeople";
+        ViewData["Title"] = "List Of People";
 }
 
-<h2>People Index</h2>
-
-<p><b>Search people by name or city:</b></p>
-<form asp-controller="People" asp-action="FilterPeople" method="post">
-    @Html.AntiForgeryToken()
-    <label for="name">Name:</label><br>
-    <input type="text" id="name" name="name"><br>
-    <label for="city">City:</label><br>
-    <input type="text" id="city" name="city"><br>
-    <input type="submit" value="Search">
-</form>
-<br>
-<br>
-<p><b>Add a person to the list:</b></p>
-<form asp-controller="People" asp-action="CreatePerson" method="post" role="form">
-    @Html.AntiForgeryToken()
-    <label for="name">Name:</label><br>
-    <input type="text" id="name" name="Name"><br>
-    <label for="phone">Phone number:</label><br>
-    <input type="text" id="phone" name="PhoneNumber"><br>
-    <label for="city">City:</label><br>
-    <input type="text" id="city" name="City"><br>
-    <input type="submit" value="Submit">
-</form>
-<br>
-<br>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Phonenr</th>
-            <th>City</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var person in Person.personList)
-        {
-            <tr>
-                <td>@person.Name</td>
-                <td>@person.PhoneNumber</td>
-                <td>@person.City.</td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div class="container">
+    <h2>People Index</h2>
+    <div>
+        <form asp-action="ListOfPeople" method="post" role="form">
+            @Html.AntiForgeryToken()
+            <h3>Search person by name or city:</h3>
+            <input asp-for="FilterString" required />
+            <input type="submit" class="btn btn-primary" name="btnFilter" value="Search" />
+        </form>
+    </div>
+    <br>
+    <br>
+    <div>
+        <form asp-action="CreatePerson" method="post" role="form">
+            @Html.AntiForgeryToken()
+            <h3>Add a person to the list:</h3>
+            <label asp-for="Name"></label>
+            <input asp-for="Name" />
+            <span asp-validation-for="Name"></span>
+            <br>
+            <label asp-for="Phone"></label>
+            <input asp-for="Phone" />
+            <span asp-validation-for="Phone"></span>
+            <br>
+            <label asp-for="City"></label>
+            <input asp-for="City" />
+            <span asp-validation-for="City"></span>
+            <br>
+            <input type="submit" class="btn btn-primary" name="btnAddPerson" value="Add Person" />
+        </form>
+    </div>
+    <p>@ViewBag.Message</p>
+    <br>
+    <br>
+    <div>
+        <h3>List of people</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>City</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var person in Model.PersonListView)
+                {
+                    <tr>
+                        <td>@person.Name</td>
+                        <td>@person.Phone</td>
+                        <td>@person.City</td>
+                        <td><a href="#" onclick="location.href = '@Url.Action("DeletePerson", "People", new { id=person.PersonId})'">Delete</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
