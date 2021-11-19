@@ -1,0 +1,16 @@
+﻿<div>
+    <h3>@ViewBag.Title</h3>
+    <div>
+        <h3>JQuery with Ajax functions</h3>
+        <div id="ErrorMessages"></div>
+
+        <input type="button" class="btn btn-primary" onclick="getAllPersons()" value="Get all persons" />
+
+        <label for="PersonIdInputLabel">Person ID</label>
+        <input id="PersonIdInput" type="number" />
+
+        <input type="button" class="btn btn-primary" onclick="getPersonByID()" value="DetailsForPerson" />
+        <input type="button" class="btn btn-primary" onclick="deletePersonByID()" value="Delete" />
+    </div>
+    <div id="PersonList"></div>
+</div>

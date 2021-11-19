@@ -11,7 +11,7 @@ namespace ASP.NET_Core_Project.Controllers
     {
         public IActionResult ListOfPeople()
         {
-            PersonEdit personMemory = new PersonEdit();
+            PersonMemory personMemory = new PersonMemory();
             PeopleViewModel PeopleListViewModel = new PeopleViewModel() { PersonListView = personMemory.ReadPerson()};
             if (PeopleListViewModel.PersonListView.Count == 0 || PeopleListViewModel.PersonListView == null)
             {
@@ -23,7 +23,7 @@ namespace ASP.NET_Core_Project.Controllers
         [HttpPost]
         public IActionResult ListOfPeople(PeopleViewModel viewModel)
         {
-            PersonEdit personMemory = new PersonEdit();
+            PersonMemory personMemory = new PersonMemory();
             viewModel.PersonListView.Clear();
 
             foreach (Person p in personMemory.ReadPerson())
@@ -41,7 +41,7 @@ namespace ASP.NET_Core_Project.Controllers
         public IActionResult CreatePerson(CreatePersonViewModel createPersonViewModel)
         {
             PeopleViewModel newViewModel = new PeopleViewModel();
-            PersonEdit personMemory = new PersonEdit();
+            PersonMemory personMemory = new PersonMemory();
             if (ModelState.IsValid)
             {
                 newViewModel.Name = createPersonViewModel.Name;
@@ -62,7 +62,7 @@ namespace ASP.NET_Core_Project.Controllers
 
         public IActionResult DeletePerson(int id)
         {
-            PersonEdit personMemory = new PersonEdit();
+            PersonMemory personMemory = new PersonMemory();
             Person targetPerson = personMemory.ReadPerson(id);
             personMemory.DeletePerson(targetPerson);
             return RedirectToAction("ListOfPeople");

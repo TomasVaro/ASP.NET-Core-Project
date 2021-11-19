@@ -3,7 +3,7 @@
         <div class="col-md-3">@Model.Name</div>
         <div class="col-md-3">@Model.Phone</div>
         <div class="col-md-3">@Model.City</div>
-        <div>
+        <div class="col-md-3">
             <a href="#" onclick="location.href = '@Url.Action("DeletePerson", "People", new { id=Model.PersonId })'">Delete</a>
         </div>
     </div>
