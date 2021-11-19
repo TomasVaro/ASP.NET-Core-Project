@@ -1,9 +1,7 @@
 ﻿@model PeopleViewModel
 @{
-        ViewData["Title"] = "List Of People";
-}
-
-<div class="container">
+    ViewData["Title"] = "List Of People";
+}<div class="container">
     <h2>People Index</h2>
     <div>
         <form asp-action="ListOfPeople" method="post" role="form">
@@ -39,6 +37,7 @@
     <br>
     <div>
         <h3>List of people</h3>
+
         <table class="table">
             <thead>
                 <tr>
@@ -48,17 +47,12 @@
                     <th>Action</th>
                 </tr>
             </thead>
-            <tbody>
-                @foreach (var person in Model.PersonListView)
-                {
-                    <tr>
-                        <td>@person.Name</td>
-                        <td>@person.Phone</td>
-                        <td>@person.City</td>
-                        <td><a href="#" onclick="location.href = '@Url.Action("DeletePerson", "People", new { id=person.PersonId})'">Delete</a></td>
-                    </tr>
-                }
-            </tbody>
         </table>
+        <div>
+            @foreach (var person in Model.PersonListView)
+            {
+                <partial name="_PeopleListPartial" model="person" />
+            }
+        </div>
     </div>
 </div>
