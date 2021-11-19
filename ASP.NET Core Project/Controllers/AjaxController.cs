@@ -18,8 +18,43 @@ namespace ASP.NET_Core_Project.Controllers
         public IActionResult GetPersons()
         {
             PersonMemory personMemory = new PersonMemory();
+            PeopleViewModel PeopleListViewModel = new PeopleViewModel() { PersonListView = personMemory.ReadPerson() };
+            if (PeopleListViewModel.PersonListView.Count == 0 || PeopleListViewModel.PersonListView == null)
+            {
+                personMemory.SeedPersons();
+            }
             List<Person> personList = personMemory.ReadPerson();
             return PartialView("_PeopleListAjaxPartial", personList);
+        }
+
+        [HttpPost]
+        public IActionResult FindPersonById(int personID)
+        {
+            PersonMemory personMemory = new PersonMemory();
+            Person personToFind = personMemory.ReadPerson(personID);
+            List<Person> personList = new List<Person>();
+            if (personToFind != null)
+            {
+                personList.Add(personToFind);
+            }
+            return PartialView("_PeopleListAjaxPartial", personList);
+        }
+
+        [HttpPost]
+        public IActionResult DeletePersonById(int personID)
+        {
+            PersonMemory personMemory = new PersonMemory();
+            Person personToDelete = personMemory.ReadPerson(personID);
+            bool success = false;
+            if (personToDelete != null)
+            {
+                success = personMemory.DeletePerson(personToDelete);
+            }
+            if (success)
+            {
+                return StatusCode(200);
+            }
+            return StatusCode(404);
         }
     }
 }

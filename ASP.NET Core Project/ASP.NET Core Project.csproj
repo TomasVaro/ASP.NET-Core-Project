@@ -10,12 +10,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\PersonScript.js" />
+    <None Include="wwwroot\js\PersonScript.js" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="bootstrap" Version="5.1.2" />
-    <PackageReference Include="jQuery" Version="3.6.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
   </ItemGroup>
 

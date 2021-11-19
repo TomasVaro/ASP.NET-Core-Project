@@ -8,7 +8,6 @@
                 <th>Name</th>
                 <th>Phone</th>
                 <th>City</th>
-                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -19,9 +18,6 @@
                     <td>@person.Name</td>
                     <td>@person.Phone</td>
                     <td>@person.City</td>
-                    <td>
-                        <a href="#" onclick="location.href = '@Url.Action("DeletePerson", "People", new { id=person.PersonId })'">Delete</a>
-                    </td>
                 </tr>
             }
         </tbody>

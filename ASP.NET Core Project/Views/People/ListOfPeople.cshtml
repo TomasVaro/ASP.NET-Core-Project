@@ -8,7 +8,7 @@
             @Html.AntiForgeryToken()
             <h3>Search person by name or city:</h3>
             <input asp-for="FilterString" required />
-            <input type="submit" class="btn btn-success" name="btnFilter" value="Search" />
+            <input type="submit" class="btn btn-primary" name="btnFilter" value="Search" />
         </form>
     </div>
     <br>
@@ -29,7 +29,7 @@
             <input asp-for="City" />
             <span asp-validation-for="City"></span>
             <br>
-            <input type="submit" class="btn btn-primary" name="btnAddPerson" value="Add Person" />
+            <input type="submit" class="btn btn-success" name="btnAddPerson" value="Add Person" />
         </form>
     </div>
     <p>@ViewBag.Message</p>

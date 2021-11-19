@@ -20,7 +20,7 @@ namespace ASP.NET_Core_Project.Models
         public string Phone { get; set; }
 
         [DataType(DataType.Text)]
-        [Required(ErrorMessage = "Please enter a City"), MaxLength(50), MinLength(2)]
+        [Required(ErrorMessage = "Please enter a City"), MaxLength(50), MinLength(1)]
         [Display(Name = "City")]
         public string City { get; set; }
     }
