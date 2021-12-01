@@ -12,14 +12,17 @@ namespace ASP.NET_Core_Project.Models
         [Key]
         [Column("PersonId")]
         public int PersonId { get; set; }
+
         [Required]
         [Column("Name")]
         [MaxLength(50)]
         public string Name { get; set; }
+
         [Required]
         [Column("Phone")]
         [MaxLength(50)]
         public string Phone { get; set; }
+
         [Required]
         [Column("City")]
         [MaxLength(50)]

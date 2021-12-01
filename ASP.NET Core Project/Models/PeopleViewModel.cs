@@ -13,6 +13,6 @@ namespace ASP.NET_Core_Project.Models
         public PeopleViewModel()
         {
             PersonListView = new List<Person>();
-        }   
+        }
     }
 }
