@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace ASP.NET_Core_Project.Models
 {
-    public class PersonEF
+    public class PersonModel
     {
         [Key]
-        [Column("PersonId")]
         public int PersonId { get; set; }
 
         [Required]
@@ -23,9 +22,7 @@ namespace ASP.NET_Core_Project.Models
         [MaxLength(50)]
         public string Phone { get; set; }
 
-        [Required]
-        [Column("City")]
-        [MaxLength(50)]
-        public string City { get; set; }
+        public int CityId { get; set; }
+        public CityModel City { get; set; }
     }
 }

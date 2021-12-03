@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PersonEF>
+﻿@model IEnumerable<PersonModel>
 @{
     ViewData["Title"] = "List Of People";
 }<div class="container">
@@ -6,13 +6,17 @@
     <div>
         <h3>List of people</h3>
         <a asp-action="CreatePerson">Create Person</a>
+        <br>
+        <a asp-controller="Country" asp-action="ListOfCountries">List Countries</a>
+        <br>
+        <a asp-controller="City" asp-action="ListOfCities">List Cities</a>
         <table class="table">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
                     <th>Phone</th>
-                    <th>City</th>
+                    <th>CityId</th>
                 </tr>
             </thead>
             <tbody>
@@ -22,7 +26,7 @@
                         <td>@person.PersonId</td>
                         <td>@person.Name</td>
                         <td>@person.Phone</td>
-                        <td>@person.City</td>
+                        <td>@person.CityId</td>
                     </tr>
                 }
             </tbody>
