@@ -9,13 +9,10 @@
 
 <table class="table">
     <thead>
-        <tr><th>
+        <tr>
+            <th>
                 @Html.DisplayNameFor(model => model.Country)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cities)
-            </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -24,9 +21,6 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Country)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cities)
             </td>
         </tr>
         }
