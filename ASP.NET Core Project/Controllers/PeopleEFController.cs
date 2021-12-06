@@ -25,6 +25,7 @@ namespace ASP.NET_Core_Project.Controllers
         }
         public IActionResult CreatePerson()
         {
+            ViewData["CityId"] = new SelectList(_context.City, "CityId", "City");
             return View();
         }
         [HttpPost]
