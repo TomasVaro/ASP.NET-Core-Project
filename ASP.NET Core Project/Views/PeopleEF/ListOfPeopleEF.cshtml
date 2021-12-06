@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<PersonModel>
 @{
-    ViewData["Title"] = "List Of People";
+    ViewData["Title"] = "ListOfPeople";
 }<div class="container">
     <h2>People Index</h2>
     <div>
@@ -10,13 +10,18 @@
         <a asp-controller="Country" asp-action="ListOfCountries">List Countries</a>
         <br>
         <a asp-controller="City" asp-action="ListOfCities">List Cities</a>
+        <br>
+        <a asp-controller="Language" asp-action="ListOfLanguages">List Languages</a>
+        <br>
+        <a asp-action="AddLanguage">Add Language to Person</a>
+        <br>
         <table class="table">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
                     <th>Phone</th>
-                    <th>CityId</th>
+                    <th>City</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,7 +31,7 @@
                         <td>@person.PersonId</td>
                         <td>@person.Name</td>
                         <td>@person.Phone</td>
-                        <td>@person.CityId</td>
+                        <td>@person.City.City</td>
                     </tr>
                 }
             </tbody>

@@ -3,14 +3,16 @@ using ASP.NET_Core_Project.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ASP.NET_Core_Project.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211203120152_Added table Languages")]
+    partial class AddedtableLanguages
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -136,95 +138,6 @@ namespace ASP.NET_Core_Project.Migrations
                     b.HasKey("LanguageId");
 
                     b.ToTable("Language");
-
-                    b.HasData(
-                        new
-                        {
-                            LanguageId = 1,
-                            Language = "Swedish"
-                        },
-                        new
-                        {
-                            LanguageId = 2,
-                            Language = "Danish"
-                        },
-                        new
-                        {
-                            LanguageId = 3,
-                            Language = "Norvegian"
-                        },
-                        new
-                        {
-                            LanguageId = 4,
-                            Language = "English"
-                        },
-                        new
-                        {
-                            LanguageId = 5,
-                            Language = "German"
-                        },
-                        new
-                        {
-                            LanguageId = 6,
-                            Language = "French"
-                        });
-                });
-
-            modelBuilder.Entity("ASP.NET_Core_Project.Models.PersonLanguageModel", b =>
-                {
-                    b.Property<int>("PersonId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("LanguageId")
-                        .HasColumnType("int");
-
-                    b.HasKey("PersonId", "LanguageId");
-
-                    b.HasIndex("LanguageId");
-
-                    b.ToTable("PersonLanguage");
-
-                    b.HasData(
-                        new
-                        {
-                            PersonId = 1,
-                            LanguageId = 1
-                        },
-                        new
-                        {
-                            PersonId = 2,
-                            LanguageId = 2
-                        },
-                        new
-                        {
-                            PersonId = 3,
-                            LanguageId = 1
-                        },
-                        new
-                        {
-                            PersonId = 1,
-                            LanguageId = 4
-                        },
-                        new
-                        {
-                            PersonId = 4,
-                            LanguageId = 6
-                        },
-                        new
-                        {
-                            PersonId = 7,
-                            LanguageId = 3
-                        },
-                        new
-                        {
-                            PersonId = 5,
-                            LanguageId = 5
-                        },
-                        new
-                        {
-                            PersonId = 3,
-                            LanguageId = 6
-                        });
                 });
 
             modelBuilder.Entity("ASP.NET_Core_Project.Models.PersonModel", b =>
@@ -326,21 +239,6 @@ namespace ASP.NET_Core_Project.Migrations
                     b.HasOne("ASP.NET_Core_Project.Models.CountryModel", "Country")
                         .WithMany("Cities")
                         .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("ASP.NET_Core_Project.Models.PersonLanguageModel", b =>
-                {
-                    b.HasOne("ASP.NET_Core_Project.Models.LanguageModel", "Language")
-                        .WithMany("Languages")
-                        .HasForeignKey("LanguageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ASP.NET_Core_Project.Models.PersonModel", "Person")
-                        .WithMany("Languages")
-                        .HasForeignKey("PersonId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

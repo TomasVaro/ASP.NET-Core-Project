@@ -24,5 +24,7 @@ namespace ASP.NET_Core_Project.Models
 
         public int CityId { get; set; }
         public CityModel City { get; set; }
+
+        public List<PersonLanguageModel> Languages { get; set; }
     }
 }

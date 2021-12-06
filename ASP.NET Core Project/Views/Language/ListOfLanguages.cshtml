@@ -1,0 +1,41 @@
+﻿@model IEnumerable<LanguageModel>
+
+@{
+    ViewData["Title"] = "ListOfLanguages";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>List of Languages</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Language)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Persons)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Language)
+            </td>
+            <td>
+                @foreach (var p in item.Persons)
+                {
+                    @Html.DisplayFor(modelItem => p.Person.Name)
+                    <br>
+                }
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <a asp-controller="PeopleEF" asp-action="ListOfPeopleEF">Back to List</a>
+</div>

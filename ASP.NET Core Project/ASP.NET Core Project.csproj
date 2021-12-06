@@ -28,6 +28,14 @@
     <Compile Remove="Migrations\20211202130534_Seeding FK.Designer.cs" />
     <Compile Remove="Migrations\20211202131125_Seeding FK.cs" />
     <Compile Remove="Migrations\20211202131125_Seeding FK.Designer.cs" />
+    <Compile Remove="Migrations\20211203125905_Added Association table andd seeded.cs" />
+    <Compile Remove="Migrations\20211203125905_Added Association table andd seeded.Designer.cs" />
+    <Compile Remove="Migrations\20211203131304_Added Association table and Seeded.cs" />
+    <Compile Remove="Migrations\20211203131304_Added Association table and Seeded.Designer.cs" />
+    <Compile Remove="Migrations\20211203131608_Added Association table and Seeded.cs" />
+    <Compile Remove="Migrations\20211203131608_Added Association table and Seeded.Designer.cs" />
+    <Compile Remove="Migrations\20211203132133_Added Association table and Seeded.cs" />
+    <Compile Remove="Migrations\20211203132133_Added Association table and Seeded.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -47,10 +55,6 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

@@ -17,6 +17,7 @@ namespace ASP.NET_Core_Project.Controllers
         public IActionResult ListOfCities()
         {
             List<CityModel> ListOfCities = _context.City.ToList();
+            List<CountryModel> ListOfCountries = _context.Country.ToList();
             return View(ListOfCities);
         }
     }
