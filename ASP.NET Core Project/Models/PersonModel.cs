@@ -1,30 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace ASP.NET_Core_Project.Models
 {
+    // Person data
     public class PersonModel
     {
-        [Key]
-        public int PersonId { get; set; }
-
-        [Required]
-        [Column("Name")]
-        [MaxLength(50)]
+        private readonly int personId;
+        public int PersonId { get { return personId; } }
         public string Name { get; set; }
-
-        [Required]
-        [Column("Phone")]
-        [MaxLength(50)]
         public string Phone { get; set; }
+        public string City { get; set; }
 
-        public int CityId { get; set; }
-        public CityModel City { get; set; }
-
-        public List<PersonLanguageModel> Languages { get; set; }
+        public PersonModel(int id, string name, string phone, string city)
+        {
+            this.personId = id;
+            Name = name;
+            Phone = phone;
+            City = city;
+        }
     }
 }

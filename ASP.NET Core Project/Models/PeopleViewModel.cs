@@ -8,11 +8,11 @@ namespace ASP.NET_Core_Project.Models
     // Container for the information needed in people view
     public class PeopleViewModel : CreatePersonViewModel
     {
-        public List<Person> PersonListView { get; set; }
+        public List<PersonModel> PersonListView { get; set; }
         public string FilterString { get; set; }
         public PeopleViewModel()
         {
-            PersonListView = new List<Person>();
+            PersonListView = new List<PersonModel>();
         }
     }
 }

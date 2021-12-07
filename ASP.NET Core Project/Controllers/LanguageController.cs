@@ -17,7 +17,7 @@ namespace ASP.NET_Core_Project.Controllers
         public IActionResult ListOfLanguages()
         {
             List<LanguageModel> ListOfLanguages = _context.Language.ToList();
-            List<PersonModel> ListOfPersons = _context.People.ToList();
+            List<PersonEFModel> ListOfPersons = _context.People.ToList();
             List<PersonLanguageModel> ListOfPersonLanguages = _context.PersonLanguage.ToList();
             return View(ListOfLanguages);
         }

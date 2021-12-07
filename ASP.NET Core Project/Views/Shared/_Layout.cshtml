@@ -23,9 +23,13 @@
             <a asp-controller="Ajax" asp-action="Index">ListPeopleWithAjax</a>
             <a asp-controller="PeopleEF" asp-action="ListOfPeopleEF">ListPeopleEF</a>
         </div>
+        <div>
+            <partial name="_LoginPartial" />
+        </div>
     </header>
     <main>
         <div class="container">
+            @RenderSection("scripts", required: false)
             @RenderBody()
         </div>
     </main>

@@ -7,7 +7,7 @@ namespace ASP.NET_Core_Project.Models
 {
     public class PersonMemory
     {
-        private static List<Person> personList = new List<Person>();
+        private static List<PersonModel> personList = new List<PersonModel>();
         private static int idCounter;
         public void SeedPersons()
         {
@@ -23,28 +23,28 @@ namespace ASP.NET_Core_Project.Models
             personMemory.CreatePerson("Ella", "131-729 38 66", "Göteborg");
         }
 
-        public Person CreatePerson(string name, string phone, string city)
+        public PersonModel CreatePerson(string name, string phone, string city)
         {
-            Person newPerson = new Person(idCounter, name, phone, city);
+            PersonModel newPerson = new PersonModel(idCounter, name, phone, city);
             personList.Add(newPerson);
             idCounter++;
             return newPerson;
         }
 
-        public bool DeletePerson(Person person)
+        public bool DeletePerson(PersonModel person)
         {
             bool status = personList.Remove(person);
             return status;
         }
 
-        public List<Person> ReadPerson()
+        public List<PersonModel> ReadPerson()
         {
             return personList;
         }
 
-        public Person ReadPerson(int id)
+        public PersonModel ReadPerson(int id)
         {
-            Person targetPerson = personList.Find(p => p.PersonId == id);
+            PersonModel targetPerson = personList.Find(p => p.PersonId == id);
             return targetPerson;
         }
     }

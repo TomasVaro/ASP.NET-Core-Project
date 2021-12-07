@@ -19,7 +19,7 @@ namespace ASP.NET_Core_Project.Controllers
         }
         public IActionResult ListOfPeopleEF()
         {
-            List<PersonModel> ListOfPersons = _context.People.ToList();
+            List<PersonEFModel> ListOfPersons = _context.People.ToList();
             List<CityModel> ListOfCities = _context.City.ToList();
             return View(ListOfPersons);
         }
@@ -29,7 +29,7 @@ namespace ASP.NET_Core_Project.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult CreatePerson(PersonModel person)
+        public IActionResult CreatePerson(PersonEFModel person)
         {
             if (ModelState.IsValid)
             {

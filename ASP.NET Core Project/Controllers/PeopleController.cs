@@ -26,7 +26,7 @@ namespace ASP.NET_Core_Project.Controllers
             PersonMemory personMemory = new PersonMemory();
             viewModel.PersonListView.Clear();
 
-            foreach (Person p in personMemory.ReadPerson())
+            foreach (PersonModel p in personMemory.ReadPerson())
             {
                 if (p.Name.Contains(viewModel.FilterString, StringComparison.OrdinalIgnoreCase) ||
                     p.City.Contains(viewModel.FilterString, StringComparison.OrdinalIgnoreCase))
@@ -63,7 +63,7 @@ namespace ASP.NET_Core_Project.Controllers
         public IActionResult DeletePerson(int id)
         {
             PersonMemory personMemory = new PersonMemory();
-            Person targetPerson = personMemory.ReadPerson(id);
+            PersonModel targetPerson = personMemory.ReadPerson(id);
             personMemory.DeletePerson(targetPerson);
             return RedirectToAction("ListOfPeople");
         }

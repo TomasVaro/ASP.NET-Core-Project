@@ -10,7 +10,7 @@ namespace ASP.NET_Core_Project.Models
     public class PersonLanguageModel
     {
         public int PersonId { get; set; }
-        public PersonModel Person { get; set; }
+        public PersonEFModel Person { get; set; }
 
         public int LanguageId { get; set; }
 

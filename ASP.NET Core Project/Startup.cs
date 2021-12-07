@@ -2,6 +2,7 @@ using ASP.NET_Core_Project.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -38,6 +39,10 @@ namespace ASP.NET_Core_Project
             services.AddMvc();
             services.AddDbContext<AppDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddDefaultUI()
+                .AddEntityFrameworkStores<AppDbContext>();
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,10 +54,10 @@ namespace ASP.NET_Core_Project
             }
 
             app.UseStaticFiles();
-
             app.UseRouting();
-
             app.UseSession();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
@@ -67,6 +72,7 @@ namespace ASP.NET_Core_Project
                     name: "game",
                     pattern: "GuessingGame",
                     defaults: new { controller = "Game", action = "NumberGuessing" });
+                endpoints.MapRazorPages();
             });
         }
     }

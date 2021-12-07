@@ -23,7 +23,7 @@ namespace ASP.NET_Core_Project.Controllers
             {
                 personMemory.SeedPersons();
             }
-            List<Person> personList = personMemory.ReadPerson();
+            List<PersonModel> personList = personMemory.ReadPerson();
             return PartialView("_PeopleListAjaxPartial", personList);
         }
 
@@ -31,8 +31,8 @@ namespace ASP.NET_Core_Project.Controllers
         public IActionResult FindPersonById(int personID)
         {
             PersonMemory personMemory = new PersonMemory();
-            Person personToFind = personMemory.ReadPerson(personID);
-            List<Person> personList = new List<Person>();
+            PersonModel personToFind = personMemory.ReadPerson(personID);
+            List<PersonModel> personList = new List<PersonModel>();
             if (personToFind != null)
             {
                 personList.Add(personToFind);
@@ -44,7 +44,7 @@ namespace ASP.NET_Core_Project.Controllers
         public IActionResult DeletePersonById(int personID)
         {
             PersonMemory personMemory = new PersonMemory();
-            Person personToDelete = personMemory.ReadPerson(personID);
+            PersonModel personToDelete = personMemory.ReadPerson(personID);
             bool success = false;
             if (personToDelete != null)
             {

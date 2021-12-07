@@ -20,6 +20,6 @@ namespace ASP.NET_Core_Project.Models
         public int CountryId { get; set; }
         public CountryModel Country { get; set; }
 
-        public List<PersonModel> People { get; set; }
+        public List<PersonEFModel> People { get; set; }
     }
 }

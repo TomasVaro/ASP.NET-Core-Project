@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,19 +8,21 @@ using System.Threading.Tasks;
 
 namespace ASP.NET_Core_Project.Models
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<ApplicationUser>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options ) : base(options) { }
-        public DbSet<PersonModel> People { get; set; }
+        public DbSet<PersonEFModel> People { get; set; }
         public DbSet<CountryModel> Country { get; set; }
         public DbSet<CityModel> City { get; set; }
         public DbSet<LanguageModel> Language { get; set; }
         public DbSet<PersonLanguageModel> PersonLanguage { get; set; }
+        public DbSet<ApplicationUser> User { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<PersonLanguageModel>().HasKey(pl => new { pl.PersonId, pl.LanguageId });
-
             modelBuilder.Entity<PersonLanguageModel>()
                 .HasOne(pl => pl.Person)
                 .WithMany(p => p.Languages)
@@ -29,15 +33,15 @@ namespace ASP.NET_Core_Project.Models
                 .WithMany(p => p.Persons)
                 .HasForeignKey(pl => pl.LanguageId);
 
-            modelBuilder.Entity<PersonModel>().HasData(new PersonModel { PersonId = 1, Name = "Pelle", Phone = "123-456 78 90", CityId = 1 });
-            modelBuilder.Entity<PersonModel>().HasData(new PersonModel { PersonId = 2, Name = "Lisa", Phone = "098-765 43 21", CityId = 1 });
-            modelBuilder.Entity<PersonModel>().HasData(new PersonModel { PersonId = 3, Name = "Gustav", Phone = "023-987 43 25", CityId = 2 });
-            modelBuilder.Entity<PersonModel>().HasData(new PersonModel { PersonId = 4, Name = "Åke", Phone = "023-543 78 35", CityId = 3 });
-            modelBuilder.Entity<PersonModel>().HasData(new PersonModel { PersonId = 5, Name = "Nicklas", Phone = "070-992 12 84", CityId = 4 });
-            modelBuilder.Entity<PersonModel>().HasData(new PersonModel { PersonId = 6, Name = "Åsa", Phone = "072-375 16 92", CityId = 1 });
-            modelBuilder.Entity<PersonModel>().HasData(new PersonModel { PersonId = 7, Name = "Per", Phone = "023-530 32 39", CityId = 2 });
-            modelBuilder.Entity<PersonModel>().HasData(new PersonModel { PersonId = 8, Name = "Lotta", Phone = "123-937 33 94", CityId = 6 });
-            modelBuilder.Entity<PersonModel>().HasData(new PersonModel { PersonId = 9, Name = "Mona", Phone = "131-729 38 66", CityId = 4 });
+            modelBuilder.Entity<PersonEFModel>().HasData(new PersonEFModel { PersonId = 1, Name = "Pelle", Phone = "123-456 78 90", CityId = 1 });
+            modelBuilder.Entity<PersonEFModel>().HasData(new PersonEFModel { PersonId = 2, Name = "Lisa", Phone = "098-765 43 21", CityId = 1 });
+            modelBuilder.Entity<PersonEFModel>().HasData(new PersonEFModel { PersonId = 3, Name = "Gustav", Phone = "023-987 43 25", CityId = 2 });
+            modelBuilder.Entity<PersonEFModel>().HasData(new PersonEFModel { PersonId = 4, Name = "Åke", Phone = "023-543 78 35", CityId = 3 });
+            modelBuilder.Entity<PersonEFModel>().HasData(new PersonEFModel { PersonId = 5, Name = "Nicklas", Phone = "070-992 12 84", CityId = 4 });
+            modelBuilder.Entity<PersonEFModel>().HasData(new PersonEFModel { PersonId = 6, Name = "Åsa", Phone = "072-375 16 92", CityId = 1 });
+            modelBuilder.Entity<PersonEFModel>().HasData(new PersonEFModel { PersonId = 7, Name = "Per", Phone = "023-530 32 39", CityId = 2 });
+            modelBuilder.Entity<PersonEFModel>().HasData(new PersonEFModel { PersonId = 8, Name = "Lotta", Phone = "123-937 33 94", CityId = 6 });
+            modelBuilder.Entity<PersonEFModel>().HasData(new PersonEFModel { PersonId = 9, Name = "Mona", Phone = "131-729 38 66", CityId = 4 });
 
             modelBuilder.Entity<CountryModel>().HasData(new CountryModel { CountryId = 1, Country = "Sweden" });
             modelBuilder.Entity<CountryModel>().HasData(new CountryModel { CountryId = 2, Country = "Denmark" });
