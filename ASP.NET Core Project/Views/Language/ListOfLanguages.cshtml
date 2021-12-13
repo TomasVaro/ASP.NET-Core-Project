@@ -6,18 +6,21 @@
 }
 
 <h1>List of Languages</h1>
-
 <table class="table">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Language)
             </th>
+            @if (User.IsInRole("Admin"))
+            {
+                <th>Action</th>
+            }
             <th>
                 @Html.DisplayNameFor(model => model.Persons)
             </th>
         </tr>
-    </thead>
+    </thead>    
     <tbody>
         @foreach (var item in Model)
         {
@@ -26,16 +29,26 @@
                 @Html.DisplayFor(modelItem => item.Language)
             </td>
             <td>
-                @foreach (var p in item.Persons)
+                @if (item.Persons != null)
                 {
-                    @Html.DisplayFor(modelItem => p.Person.Name)
-                    <br>
+                    @foreach (var p in item.Persons)
+                    {
+                        @Html.DisplayFor(modelItem => p.Person.Name)
+                        <br>
+                    }
                 }
             </td>
+            @if (User.IsInRole("Admin"))
+            {
+            <td>
+                <a href="#" onclick="location.href = '@Url.Action("DeleteLanguage", "Language", new { id=item.LanguageId })'">Delete</a>
+                <a href="#" onclick="location.href = '@Url.Action("EditLanguage", "Language", new { id=item.LanguageId })'">Edit</a>
+            </td>
+            }
         </tr>
         }
     </tbody>
 </table>
 <div>
-    <a asp-controller="PeopleEF" asp-action="ListOfPeopleEF">Back to List</a>
+    <a asp-controller="PeopleEF" asp-action="ListOfPeopleEF">Back to People List</a>
 </div>

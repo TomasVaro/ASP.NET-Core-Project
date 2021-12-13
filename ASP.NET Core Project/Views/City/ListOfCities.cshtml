@@ -6,8 +6,6 @@
 }
 
 <h1>List of Cities</h1>
-
-
 <table class="table">
     <thead>
         <tr>
@@ -17,23 +15,33 @@
             <th>
                 @Html.DisplayNameFor(model => model.Country)
             </th>
-            <th></th>
+            @if (User.IsInRole("Admin"))
+            {
+                <th>Action</th>
+            }
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Country.Country)
+            </td>
+            @if (User.IsInRole("Admin"))
+            {
                 <td>
-                    @Html.DisplayFor(modelItem => item.City)
+                    <a href="#" onclick="location.href = '@Url.Action("DeleteCity", "City", new { id=item.CityId })'">Delete</a>
+                    <a href="#" onclick="location.href = '@Url.Action("EditCity", "City", new { id=item.CityId })'">Edit</a>
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Country.Country)
-                </td>
-            </tr>
+            }
+        </tr>
         }
     </tbody>
 </table>
 <div>
-    <a asp-controller="PeopleEF" asp-action="ListOfPeopleEF">Back to List</a>
+    <a asp-controller="PeopleEF" asp-action="ListOfPeopleEF">Back to People List</a>
 </div>

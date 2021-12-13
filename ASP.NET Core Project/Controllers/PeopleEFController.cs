@@ -1,4 +1,5 @@
 ﻿using ASP.NET_Core_Project.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace ASP.NET_Core_Project.Controllers
 {
+    [Authorize]
     public class PeopleEFController : Controller
     {
         private readonly AppDbContext _context;
@@ -21,15 +23,18 @@ namespace ASP.NET_Core_Project.Controllers
         {
             List<PersonEFModel> ListOfPersons = _context.People.ToList();
             List<CityModel> ListOfCities = _context.City.ToList();
+            List<LanguageModel> ListOfLanguages = _context.Language.ToList();
+            List<PersonLanguageModel> ListOfPersonLanguages = _context.PersonLanguage.ToList();
             return View(ListOfPersons);
         }
-        public IActionResult CreatePerson()
+        public IActionResult AddPerson()
         {
             ViewData["CityId"] = new SelectList(_context.City, "CityId", "City");
+            ViewData["LanguageId"] = new SelectList(_context.Language, "LanguageId", "Language");
             return View();
         }
         [HttpPost]
-        public IActionResult CreatePerson(PersonEFModel person)
+        public IActionResult AddPerson(PersonEFModel person)
         {
             if (ModelState.IsValid)
             {
@@ -39,22 +44,51 @@ namespace ASP.NET_Core_Project.Controllers
             }
             return View();
         }
-        public IActionResult AddLanguage()
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult DeletePerson(int id)
+        {            
+            _context.People.Remove(TargetPerson(id));
+            _context.SaveChanges();
+            return RedirectToAction("ListOfPeopleEF");
+        }
+
+        public IActionResult EditPerson(int id)
         {
-            ViewData["LanguageId"] = new SelectList(_context.Language, "LanguageId", "Language");
-            ViewData["PersonId"] = new SelectList(_context.People, "PersonId", "Name");
-            return View();
+            ViewData["CityId"] = new SelectList(_context.City, "CityId", "City");
+            PersonEFModel targetPerson = TargetPerson(id);
+            List<CityModel> ListOfCities = _context.City.ToList();
+            return View(targetPerson);
         }
         [HttpPost]
-        public IActionResult AddLanguage(PersonLanguageModel personLanguageModel)
+        public IActionResult EditChoosenPerson(PersonEFModel person)
         {
-            if (ModelState.IsValid)
+            List<PersonEFModel> ListOfPersons = _context.People.ToList(); 
+            foreach (PersonEFModel p in ListOfPersons)
             {
-                _context.PersonLanguage.Add(personLanguageModel);
-                _context.SaveChanges();
-                return RedirectToAction("ListOfPeopleEF");
+                if (p.PersonId == person.PersonId)
+                {
+                    p.Name = person.Name;
+                    p.Phone = person.Phone;
+                    p.CityId = person.CityId;
+                }
             }
-            return View();
+            _context.SaveChanges();
+            return RedirectToAction("ListOfPeopleEF");
+        }
+
+        public PersonEFModel TargetPerson(int id)
+        {
+            List<PersonEFModel> ListOfPersons = _context.People.ToList();
+            PersonEFModel targetPerson = new PersonEFModel();
+            foreach (PersonEFModel p in ListOfPersons)
+            {
+                if (p.PersonId == id)
+                {
+                    targetPerson = p;
+                }
+            }
+            return targetPerson;
         }
     }
 }

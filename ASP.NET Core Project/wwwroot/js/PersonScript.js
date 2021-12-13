@@ -29,11 +29,10 @@ function deletePersonByID() {
     else
     {
         $.post("/Ajax/DeletePersonById", { personID: personIDValue }, function (data) {
-
         })
             .done(function () {
-                document.getElementById('errorMessages').innerHTML = "Successfully deleted person.";
                 getAllPersons();
+                document.getElementById('errorMessages').innerHTML = "Successfully deleted person.";
             })
             .fail(function () {
                 document.getElementById('errorMessages').innerHTML = "Could not delete person.";

@@ -27,6 +27,9 @@ namespace ASP.NET_Core_Project.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("BirthDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -37,6 +40,14 @@ namespace ASP.NET_Core_Project.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -82,6 +93,27 @@ namespace ASP.NET_Core_Project.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "312ddb6a-1295-4a8d-b2e6-a02b1fefeddd",
+                            AccessFailedCount = 0,
+                            BirthDate = new DateTime(1978, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ConcurrencyStamp = "165a3b93-1e4c-4922-974b-45781825c8ba",
+                            Email = "admin@admin.com",
+                            EmailConfirmed = false,
+                            FirstName = "Admin",
+                            LastName = "Adminsson",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@ADMIN.COM",
+                            NormalizedUserName = "ADMIN@ADMIN.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPSZxGTYzeNLRydKyyOAQ9/It28s6OqnOdSq/REDkK2Qx4gEAPLhoq37hv8wNQW7oQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "260d76f7-8c02-4fc3-a8b2-deb07dda17f6",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@admin.com"
+                        });
                 });
 
             modelBuilder.Entity("ASP.NET_Core_Project.Models.CityModel", b =>
@@ -236,64 +268,7 @@ namespace ASP.NET_Core_Project.Migrations
                         });
                 });
 
-            modelBuilder.Entity("ASP.NET_Core_Project.Models.PersonLanguageModel", b =>
-                {
-                    b.Property<int>("PersonId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("LanguageId")
-                        .HasColumnType("int");
-
-                    b.HasKey("PersonId", "LanguageId");
-
-                    b.HasIndex("LanguageId");
-
-                    b.ToTable("PersonLanguage");
-
-                    b.HasData(
-                        new
-                        {
-                            PersonId = 1,
-                            LanguageId = 1
-                        },
-                        new
-                        {
-                            PersonId = 2,
-                            LanguageId = 2
-                        },
-                        new
-                        {
-                            PersonId = 3,
-                            LanguageId = 1
-                        },
-                        new
-                        {
-                            PersonId = 1,
-                            LanguageId = 4
-                        },
-                        new
-                        {
-                            PersonId = 4,
-                            LanguageId = 6
-                        },
-                        new
-                        {
-                            PersonId = 7,
-                            LanguageId = 3
-                        },
-                        new
-                        {
-                            PersonId = 5,
-                            LanguageId = 5
-                        },
-                        new
-                        {
-                            PersonId = 3,
-                            LanguageId = 6
-                        });
-                });
-
-            modelBuilder.Entity("ASP.NET_Core_Project.Models.PersonModel", b =>
+            modelBuilder.Entity("ASP.NET_Core_Project.Models.PersonEFModel", b =>
                 {
                     b.Property<int>("PersonId")
                         .ValueGeneratedOnAdd()
@@ -387,6 +362,63 @@ namespace ASP.NET_Core_Project.Migrations
                         });
                 });
 
+            modelBuilder.Entity("ASP.NET_Core_Project.Models.PersonLanguageModel", b =>
+                {
+                    b.Property<int>("PersonId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LanguageId")
+                        .HasColumnType("int");
+
+                    b.HasKey("PersonId", "LanguageId");
+
+                    b.HasIndex("LanguageId");
+
+                    b.ToTable("PersonLanguage");
+
+                    b.HasData(
+                        new
+                        {
+                            PersonId = 1,
+                            LanguageId = 1
+                        },
+                        new
+                        {
+                            PersonId = 2,
+                            LanguageId = 2
+                        },
+                        new
+                        {
+                            PersonId = 3,
+                            LanguageId = 1
+                        },
+                        new
+                        {
+                            PersonId = 1,
+                            LanguageId = 4
+                        },
+                        new
+                        {
+                            PersonId = 4,
+                            LanguageId = 6
+                        },
+                        new
+                        {
+                            PersonId = 7,
+                            LanguageId = 3
+                        },
+                        new
+                        {
+                            PersonId = 5,
+                            LanguageId = 5
+                        },
+                        new
+                        {
+                            PersonId = 3,
+                            LanguageId = 6
+                        });
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -412,6 +444,22 @@ namespace ASP.NET_Core_Project.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "5c1b83f6-0fcb-45a3-92cf-b6cefc962441",
+                            ConcurrencyStamp = "86966545-1125-412c-bafa-ed82bc4c4396",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "f3773dd7-e8e9-4557-8f68-eb07c88126a1",
+                            ConcurrencyStamp = "7c4dfbb8-8ceb-4761-9381-7354bfb05e8c",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -497,6 +545,13 @@ namespace ASP.NET_Core_Project.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "312ddb6a-1295-4a8d-b2e6-a02b1fefeddd",
+                            RoleId = "5c1b83f6-0fcb-45a3-92cf-b6cefc962441"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -527,6 +582,15 @@ namespace ASP.NET_Core_Project.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("ASP.NET_Core_Project.Models.PersonEFModel", b =>
+                {
+                    b.HasOne("ASP.NET_Core_Project.Models.CityModel", "City")
+                        .WithMany("People")
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("ASP.NET_Core_Project.Models.PersonLanguageModel", b =>
                 {
                     b.HasOne("ASP.NET_Core_Project.Models.LanguageModel", "Language")
@@ -535,18 +599,9 @@ namespace ASP.NET_Core_Project.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ASP.NET_Core_Project.Models.PersonModel", "Person")
+                    b.HasOne("ASP.NET_Core_Project.Models.PersonEFModel", "Person")
                         .WithMany("Languages")
                         .HasForeignKey("PersonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("ASP.NET_Core_Project.Models.PersonModel", b =>
-                {
-                    b.HasOne("ASP.NET_Core_Project.Models.CityModel", "City")
-                        .WithMany("People")
-                        .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

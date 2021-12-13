@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ASP.NET_Core_Project.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ASP.NET_Core_Project.Controllers
 {
+    [Authorize]
     public class AjaxController : Controller
     {
         public IActionResult Index()
@@ -40,6 +42,7 @@ namespace ASP.NET_Core_Project.Controllers
             return PartialView("_PeopleListAjaxPartial", personList);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult DeletePersonById(int personID)
         {

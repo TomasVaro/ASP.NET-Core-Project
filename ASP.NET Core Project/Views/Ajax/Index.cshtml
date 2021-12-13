@@ -7,8 +7,10 @@
         <input id="PersonIdInput" type="number" />
 
         <input type="button" class="btn btn-info" onclick="getPersonByID()" value="Details" />
-        <input type="button" class="btn btn-danger" onclick="deletePersonByID()" value="Delete" />
-
+        @if (User.IsInRole("Admin"))
+        {
+            <input type="button" class="btn btn-danger" onclick="deletePersonByID()" value="Delete" />
+        }
         <div id="errorMessages"></div>
     </div>
     <div id="PersonList"></div>

@@ -70,6 +70,41 @@ namespace ASP.NET_Core_Project.Models
             modelBuilder.Entity<PersonLanguageModel>().HasData(new PersonLanguageModel { PersonId = 7, LanguageId = 3 });
             modelBuilder.Entity<PersonLanguageModel>().HasData(new PersonLanguageModel { PersonId = 5, LanguageId = 5 });
             modelBuilder.Entity<PersonLanguageModel>().HasData(new PersonLanguageModel { PersonId = 3, LanguageId = 6 });
+
+            string adminRoleId = Guid.NewGuid().ToString();
+            string userRoleId = Guid.NewGuid().ToString();
+            string userId = Guid.NewGuid().ToString();
+            // Creates Admin-role
+            modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole 
+            { 
+                Id = adminRoleId, 
+                Name = "Admin",
+                NormalizedName = "ADMIN" 
+            });
+            // Creates User-role
+            modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole
+            {
+                Id = userRoleId,
+                Name = "User",
+                NormalizedName = "USER"
+            });
+            // Creates Admin user
+            PasswordHasher< ApplicationUser> hasher = new PasswordHasher<ApplicationUser>();
+            modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser
+            {
+                Id = userId,
+                Email = "admin@admin.com",
+                NormalizedEmail = "ADMIN@ADMIN.COM",
+                UserName = "admin@admin.com",
+                NormalizedUserName = "ADMIN@ADMIN.COM",
+                PasswordHash = hasher.HashPassword(null, "asdfgh"),
+                FirstName = "Admin",
+                LastName = "Adminsson",
+                BirthDate = DateTime.Parse("1978-06-15")
+            });
+            // Assign Admin user an Admin role
+            modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string> {
+                RoleId = adminRoleId, UserId = userId });
         }
     }
 }

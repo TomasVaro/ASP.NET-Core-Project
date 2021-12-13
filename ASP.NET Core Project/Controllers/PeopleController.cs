@@ -1,4 +1,5 @@
 ﻿using ASP.NET_Core_Project.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -7,8 +8,10 @@ using System.Threading.Tasks;
 
 namespace ASP.NET_Core_Project.Controllers
 {
+    [Authorize]
     public class PeopleController : Controller
     {
+
         public IActionResult ListOfPeople()
         {
             PersonMemory personMemory = new PersonMemory();

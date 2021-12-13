@@ -36,6 +36,18 @@
     <Compile Remove="Migrations\20211203131608_Added Association table and Seeded.Designer.cs" />
     <Compile Remove="Migrations\20211203132133_Added Association table and Seeded.cs" />
     <Compile Remove="Migrations\20211203132133_Added Association table and Seeded.Designer.cs" />
+    <Compile Remove="Migrations\20211207120527_Added properties to User Object.cs" />
+    <Compile Remove="Migrations\20211207120527_Added properties to User Object.Designer.cs" />
+    <Compile Remove="Migrations\20211208083844_Seeded Amin Role and Id.cs" />
+    <Compile Remove="Migrations\20211208083844_Seeded Amin Role and Id.Designer.cs" />
+    <Compile Remove="Migrations\20211208084709_Seeded Amin Role and Id.cs" />
+    <Compile Remove="Migrations\20211208084709_Seeded Amin Role and Id.Designer.cs" />
+    <Compile Remove="Migrations\20211208120452_Seeded Amin Role and User.cs" />
+    <Compile Remove="Migrations\20211208120452_Seeded Amin Role and User.Designer.cs" />
+    <Compile Remove="Migrations\20211209151213_Seeding data.cs" />
+    <Compile Remove="Migrations\20211209151213_Seeding data.Designer.cs" />
+    <Compile Remove="Migrations\20211209152915_Seeding data.cs" />
+    <Compile Remove="Migrations\20211209152915_Seeding data.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -58,6 +70,10 @@
     <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="3.1.21" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

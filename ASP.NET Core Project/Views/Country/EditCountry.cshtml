@@ -1,0 +1,22 @@
+﻿@model CountryModel
+
+@{
+    ViewData["Title"] = "EditCountry";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit Country</h1>
+<form asp-action="EditChoosenCountry" method="post" role="form">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="CountryId" />
+    <label asp-for="Country"></label>
+    <input asp-for="Country" />
+    <span asp-validation-for="Country"></span>
+    <br>
+    <br>
+    <input type="submit" class="btn btn-success" name="btnEditCountry" value="OK" />
+</form>
+<br>
+<div>
+    <a asp-controller="PeopleEF" asp-action="ListOfPeopleEF">Back to People List</a>
+</div>

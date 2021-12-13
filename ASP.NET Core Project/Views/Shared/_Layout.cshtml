@@ -12,20 +12,50 @@
 <body>
     <header>
         <h1>Tomas homepage</h1>
-        <div class="link-primary">
-            <a asp-controller="Home" asp-action="Index">Home</a>
-            <a asp-controller="Home" asp-action="About">About</a>
-            <a asp-controller="Home" asp-action="Contact">Contact</a>
-            <a asp-controller="Home" asp-action="Projects">Projects</a>
-            <a asp-controller="Doctor" asp-action="FeverCheck">FeverCheck</a>
-            <a asp-controller="Game" asp-action="NumberGuessing">NumberGame</a>
-            <a asp-controller="People" asp-action="ListOfPeople">ListPeople</a>
-            <a asp-controller="Ajax" asp-action="Index">ListPeopleWithAjax</a>
-            <a asp-controller="PeopleEF" asp-action="ListOfPeopleEF">ListPeopleEF</a>
-        </div>
-        <div>
-            <partial name="_LoginPartial" />
-        </div>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ASP.NET_Core_Project</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact">Contact index</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Projects">Projects</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Doctor" asp-action="FeverCheck">Fever Check</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Game" asp-action="NumberGuessing">Number Guessing</a>
+                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="People" asp-action="ListOfPeople">List People</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Ajax" asp-action="Index">List People with Ajax</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="PeopleEF" asp-action="ListOfPeopleEF">List People EF</a>
+                            </li>
+                        }
+                        <partial name="_LoginPartial" />
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </header>
     <main>
         <div class="container">

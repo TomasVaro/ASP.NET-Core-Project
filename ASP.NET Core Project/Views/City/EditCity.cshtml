@@ -1,0 +1,29 @@
+﻿@model CityModel
+
+@{
+    ViewData["Title"] = "EditCity";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit City</h1>
+<form asp-action="EditChoosenCity" method="post" role="form">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="CityId" />
+    <div class="form-group">
+        <label asp-for="City"></label>
+        <br>
+        <input asp-for="City" />
+        <span asp-validation-for="City"></span>
+    </div>
+    <br>
+    <div class="form-group">
+        <label asp-for="Country"></label>
+        <select asp-for="CountryId" class="form-control" asp-items="ViewBag.CountryId" style="width:min-content"></select>
+        <input type="hidden" asp-for="CountryId" />
+    </div>
+    <input type="submit" class="btn btn-success" name="btnEditCity" value="OK" />
+</form>
+<br>
+<div>
+    <a asp-controller="PeopleEF" asp-action="ListOfPeopleEF">Back to People List</a>
+</div>
