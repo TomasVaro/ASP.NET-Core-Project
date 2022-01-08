@@ -1,7 +1,6 @@
 using ASP.NET_Core_Project.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -12,6 +11,11 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using JavaScriptEngineSwitcher.V8;
+using JavaScriptEngineSwitcher.Extensions.MsDependencyInjection;
+using React.AspNet;
+
 
 namespace ASP.NET_Core_Project
 {
@@ -43,6 +47,12 @@ namespace ASP.NET_Core_Project
                 .AddDefaultUI()
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<AppDbContext>();
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddReact();
+            services.AddJsEngineSwitcher(options => options.DefaultEngineName = V8JsEngine.EngineName).AddV8();
+
+            services.AddControllersWithViews();
             services.AddRazorPages();
 
             services.Configure<IdentityOptions>(options =>
@@ -63,7 +73,11 @@ namespace ASP.NET_Core_Project
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseReact(config =>
+            {
+                //config.AddScript("file");
+            }
+            );
             app.UseStaticFiles();
             app.UseRouting();
             app.UseSession();
