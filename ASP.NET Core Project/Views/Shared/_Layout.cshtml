@@ -7,6 +7,7 @@
     <script src="js/PersonScript.js" defer></script>
     <meta name="viewport" content="width=device-width" />
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>@ViewBag.Title</title>
 </head>
 <body>
@@ -39,22 +40,21 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Game" asp-action="NumberGuessing">Number Guessing</a>
                         </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="People" asp-action="ListOfPeople">List People</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Ajax" asp-action="Index">List People with Ajax</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="PeopleEF" asp-action="ListOfPeopleEF">List People EF</a>
+                        </li>
+                        }
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="React" asp-action="Index">React</a>
                         </li>
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="People" asp-action="ListOfPeople">List People</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Ajax" asp-action="Index">List People with Ajax</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="PeopleEF" asp-action="ListOfPeopleEF">List People EF</a>
-                            </li>
-
-                        }
                         <partial name="_LoginPartial" />
                     </ul>
                 </div>
@@ -69,7 +69,10 @@
     </main>
     <footer>
         <br /><br />
-        @DateTime.Now.ToShortDateString() Tomas Varo
+              <p class="text-center">
+                  &#9400;
+                  @DateTime.Now.ToShortDateString() Tomas Varo
+              </p>
     </footer>
 </body>
 </html>

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace ASP.NET_Core_Project.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class AjaxController : Controller
     {
         public IActionResult Index()

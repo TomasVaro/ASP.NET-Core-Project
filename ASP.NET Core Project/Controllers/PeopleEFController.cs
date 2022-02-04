@@ -1,4 +1,4 @@
-﻿using ASP.NET_Core_Project.Models;
+﻿    using ASP.NET_Core_Project.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -25,6 +25,7 @@ namespace ASP.NET_Core_Project.Controllers
             List<CityModel> ListOfCities = _context.City.ToList();
             List<LanguageModel> ListOfLanguages = _context.Language.ToList();
             List<PersonLanguageModel> ListOfPersonLanguages = _context.PersonLanguage.ToList();
+            List<CountryModel> countries = _context.Country.ToList();
             return View(ListOfPersons);
         }
         public IActionResult AddPerson()

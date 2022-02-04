@@ -33,6 +33,7 @@
                 <th>Name</th>
                 <th>Phone</th>
                 <th>City</th>
+                <th>Country</th>
                 <th>Languages</th>
                 <th>Action</th>
             </tr>
@@ -40,28 +41,29 @@
         <tbody>
             @foreach (var person in Model)
             {
-                <tr>
-                    <td>@person.Name</td>
-                    <td>@person.Phone</td>
-                    <td>@person.City.City</td>
-                    <td>
-                        @if (person.Languages != null)
+            <tr>
+                <td>@person.Name</td>
+                <td>@person.Phone</td>
+                <td>@person.City.City</td>
+                <td>@person.City.Country.Country</td>
+                <td>
+                    @if (person.Languages != null)
+                    {
+                        @foreach (var l in person.Languages)
                         {
-                            @foreach (var l in person.Languages)
-                            {
-                                @Html.DisplayFor(modelItem => l.Language.Language)
-                                <br>
-                            }
+                            @Html.DisplayFor(modelItem => l.Language.Language)
+                            <br>
                         }
-                    </td>
-                    <td>
-                        @if (User.IsInRole("Admin"))
-                        {
-                            <a href="#" onclick="location.href = '@Url.Action("DeletePerson", "PeopleEF", new { id=person.PersonId })'">Delete</a>
-                        }
-                        <a href="#" onclick="location.href = '@Url.Action("EditPerson", "PeopleEF", new { id=person.PersonId })'">Edit</a>
-                    </td>
-                </tr>
+                    }
+                </td>
+                <td>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a href="#" onclick="location.href = '@Url.Action("DeletePerson", "PeopleEF", new { id=person.PersonId })'">Delete</a>
+                    }
+                    <a href="#" onclick="location.href = '@Url.Action("EditPerson", "PeopleEF", new { id=person.PersonId })'">Edit</a>
+                </td>
+            </tr>
             }
         </tbody>
     </table>

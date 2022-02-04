@@ -1,9 +1,9 @@
-﻿function getAllPersons() {
-    $.get("/Ajax/GetPersons", null, function (data) {
-        $("#PersonList").html(data);
-    })
-    document.getElementById('errorMessages').innerHTML = "";
-}
+﻿    function getAllPersons() {
+        $.get("/Ajax/GetPersons", null, function (data) {
+            $("#PersonList").html(data);
+        })
+        document.getElementById('errorMessages').innerHTML = "";
+    }
 
 function getPersonByID() {
     var personIDValue = document.getElementById('PersonIdInput').value;
