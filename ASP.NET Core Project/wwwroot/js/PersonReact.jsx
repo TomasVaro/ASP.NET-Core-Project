@@ -136,14 +136,14 @@ function WriteDetailsHead() {
 ReactDOM.render(<WriteDetailsHead />, document.getElementById('detailshead'));
 
 
-function personDetails() {
-    return (
-        <tr>
-            <td className="table">Details</td>
-        </tr>
-    );
-}
-ReactDOM.render(<PersonDetails />, document.getElementById('details'));
+//function personDetails() {
+//    return (
+//        <tr>
+//            <td className="table">Details</td>
+//        </tr>
+//    );
+//}
+//ReactDOM.render(<PersonDetails />, document.getElementById('details'));
 
 
 
