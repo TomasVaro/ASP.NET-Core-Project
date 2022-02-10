@@ -1,5 +1,6 @@
 ﻿using ASP.NET_Core_Project.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -19,29 +20,26 @@ namespace ASP.NET_Core_Project.Controllers
         {
             return View();
         }
+
         public string GetPersons()
         {
-            List<PersonEFModel> ListOfPersons = _context.People.ToList();
-            List<string> names = _context.People.Select(p => p.Name).ToList();
-
-            //List<CityModel> ListOfCities = _context.City.ToList();
-            //List<LanguageModel> ListOfLanguages = _context.Language.ToList();
-            //List<PersonLanguageModel> ListOfPersonLanguages = _context.PersonLanguage.ToList();
-            //List<CountryModel> Countries = _context.Country.ToList();
-
-            //string JSONresult = JsonConvert.SerializeObject(ListOfPersons, Formatting.Indented,
+            //List<PersonEFModel> ListOfPersons = _context.People.Include(p => p.City).Include(p => p.Languages).ToList();           
+            //string json = JsonConvert.SerializeObject(ListOfPersons, Formatting.Indented,
             //    new JsonSerializerSettings
             //    {
             //        PreserveReferencesHandling = PreserveReferencesHandling.Objects
             //    });
 
 
+            List<string> names = _context.People.Select(p => p.Name).ToList();
             string JSONresult = JsonConvert.SerializeObject(names);
-            //Response.Write(JSONresult);
 
-
-            //string result = JsonConvert.SerializeObject(DatatableToDictionary(ListOfPersons, "Title"), Newtonsoft.Json.Formatting.Indented);
             return (JSONresult);
+        }
+
+        public void PersonDetails(string name)
+        {
+
         }
     }
 }

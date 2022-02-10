@@ -1,14 +1,13 @@
-﻿function WriteHead() {
+﻿////import React from 'react';
+////import ReactDOM from 'react-dom';
+
+
+function WriteHead() {
 	return (
-		<table class="table">
+		<table className="table">
 			<thead>
 				<tr>
 					<th>Name</th>
-					<th>Phone</th>
-					<th>City</th>
-					<th>Country</th>
-					<th>Languages</th>
-					<th>Action</th>
 				</tr>
 			</thead>
 		</table>
@@ -17,7 +16,7 @@
 ReactDOM.render(<WriteHead />, document.getElementById('head'));
 
 
-class MyComponent extends React.Component {
+class ListPersons extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -26,7 +25,6 @@ class MyComponent extends React.Component {
             persons: []
         };
     }
-
     componentDidMount() {
         var xhr = new XMLHttpRequest();
         xhr.addEventListener("readystatechange", () => {
@@ -53,7 +51,6 @@ class MyComponent extends React.Component {
         xhr.open("GET", "/React/GetPersons", true);
         xhr.send();
     }
-
     render() {
         var body;
         if (!this.state.isLoaded) {
@@ -66,25 +63,144 @@ class MyComponent extends React.Component {
             // success
             var persons = this.state.persons;
             var body = [];
+            //body.push(<tbody className="table"></tbody>);
             for (const element of persons) {
-                body.push(<li>{element}</li>)
+                body.push(
+                    <tr>
+                        <td className="table">{element}</td>
+                        <td>
+                            <button onClick={() => this.personDetails({ element })} className="table">Details</button>
+                        </td>
+                    </tr>)
             }
         }
         return body;
     }
+
+
+    personDetails(element) {
+        console.log(element)
+        var xhr = new XMLHttpRequest();
+        xhr.addEventListener("readystatechange", () => {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    // request succesful
+                    var response = xhr.responseText,
+                        json = JSON.parse(response);
+
+                    this.setState({
+                        isLoaded: true,
+                        persons: json
+                    });
+                } else {
+                    // error
+                    this.setState({
+                        isLoaded: true,
+                        error: xhr.responseText
+                    });
+                }
+            }
+        });
+
+        xhr.open("GET", "/React/PersonDetails", true);
+        xhr.send();
+
+
+
+
+        //<tr>
+        //    <td className="table">Details</td>
+        //</tr>
+    }
+
+
 }
-
-ReactDOM.render(
-    <MyComponent  />,
-    document.getElementById('content')
-);
+ReactDOM.render(<ListPersons  />, document.getElementById('content'));
 
 
+function WriteDetailsHead() {
+    return (
+        <table className="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>City</th>
+                    <th>Country</th>
+                    <th>Languages</th>
+                </tr>
+            </thead>
+        </table>
+    );
+}
+ReactDOM.render(<WriteDetailsHead />, document.getElementById('detailshead'));
+
+
+function personDetails() {
+    return (
+        <tr>
+            <td className="table">Details</td>
+        </tr>
+    );
+}
+ReactDOM.render(<PersonDetails />, document.getElementById('details'));
 
 
 
 
 
+
+
+
+//function ButtonClick() {
+//    return (
+//        <button onClick={this.PersonDetails}>Details</button>
+//    );
+//}
+//ReactDOM.render(<ButtonClick />, document.getElementById('butt'));
+
+
+
+
+//class Toggle extends React.Component {
+//    constructor(props) {
+//        super(props);
+//        this.state = { isToggleOn: true };
+
+//        // This binding is necessary to make `this` work in the callback
+//        this.handleClick = this.handleClick.bind(this);
+//    }
+
+//    handleClick() {
+//        this.setState(prevState => ({
+//            isToggleOn: !prevState.isToggleOn
+//        }));
+//    }
+
+//    render() {
+//        return (
+//            <button onClick={this.handleClick}>Details</button>
+//        );
+//    }
+//}
+
+//ReactDOM.render(<Toggle />, document.getElementById('butt'));
+
+
+
+
+
+
+
+
+
+
+
+
+function Button() {
+    return (<button onClick={PersonDetails}>Details</button>);
+}
+ReactDOM.render(<Button />, document.getElementById('button'));
 
 
 ////class PersonBox extends React.Component {
