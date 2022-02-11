@@ -37,6 +37,16 @@ namespace ASP.NET_Core_Project.Controllers
             return (JSONresult);
         }
 
+
+        public JsonResult PersonList()
+        {
+            List<PersonEFModel> ListOfPersons = _context.People.ToList();
+            
+            return Json(ListOfPersons);
+        }
+
+
+
         public void PersonDetails(string name)
         {
 

@@ -1,5 +1,5 @@
-﻿////import React from 'react';
-////import ReactDOM from 'react-dom';
+﻿//import React from 'react';
+//import ReactDOM from 'react-dom';
 
 
 function WriteHead() {
@@ -104,16 +104,7 @@ class ListPersons extends React.Component {
 
         xhr.open("GET", "/React/PersonDetails", true);
         xhr.send();
-
-
-
-
-        //<tr>
-        //    <td className="table">Details</td>
-        //</tr>
     }
-
-
 }
 ReactDOM.render(<ListPersons  />, document.getElementById('content'));
 
