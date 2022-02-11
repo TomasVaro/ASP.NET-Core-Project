@@ -1,4 +1,4 @@
-﻿    function getAllPersons() {
+﻿function getAllPersons() {
         $.get("/Ajax/GetPersons", null, function (data) {
             $("#PersonList").html(data);
         })
