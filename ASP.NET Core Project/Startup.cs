@@ -75,9 +75,11 @@ namespace ASP.NET_Core_Project
             }
             app.UseReact(config =>
             {
-                //config.AddScript("file");
-            }
-            );
+                config
+                .AddScript("~/js/Index.jsx")
+                .AddScript("~/js/AddEditPerson.jsx")
+                .AddScript("~/js/Index.jsx");
+            });
             app.UseStaticFiles();
             app.UseRouting();
             app.UseSession();

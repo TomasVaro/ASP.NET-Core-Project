@@ -54,24 +54,49 @@ namespace ASP.NET_Core_Project.Controllers
             return Json(ListOfPersons);
         }
 
-        public JsonResult AddEditPerson(PersonEFModel person)
+        public JsonResult AddEditPerson(int id)
         {
-            try
-            {
-                if (person.PersonId == 0)
-                {
-                    PersonEFModel personObj = new PersonEFModel();
-                    personObj.Name = person.Name;
-                    personObj.Phone = person.Phone;
-                    personObj.CityId = person.CityId;
-                    //personObj.City = person.City;
-                    //personObj.Languages = person.Languages;
-                    _context.People.Add(personObj);
-                    _context.SaveChanges();
-                    return Json(new { status = "Success", Message = "Record has been saved" });
-                }
-            }
-            catch{}
+            //try
+            //{
+            //    if (person.PersonId == 0)
+            //    {
+            //        PersonEFModel personObj = new PersonEFModel();
+            //        personObj.Name = person.Name;
+            //        personObj.Phone = person.Phone;
+            //        personObj.CityId = person.CityId;
+            //        //personObj.City = person.City;
+            //        //personObj.Languages = person.Languages;
+            //        _context.People.Add(personObj);
+            //        _context.SaveChanges();
+            //        return Json(new { status = "Success", Message = "Record has been saved" });
+            //    }
+            //}
+            //catch{}
+            return Json(new { status = "Error", Message = "Data not saved" });
+        }
+
+
+
+
+        
+        public JsonResult PersonDetails(int id)
+        {
+            //try
+            //{
+            //    if (person.PersonId == 0)
+            //    {
+            //        PersonEFModel personObj = new PersonEFModel();
+            //        personObj.Name = person.Name;
+            //        personObj.Phone = person.Phone;
+            //        personObj.CityId = person.CityId;
+            //        //personObj.City = person.City;
+            //        //personObj.Languages = person.Languages;
+            //        _context.People.Add(personObj);
+            //        _context.SaveChanges();
+            //        return Json(new { status = "Success", Message = "Record has been saved" });
+            //    }
+            //}
+            //catch { }
             return Json(new { status = "Error", Message = "Data not saved" });
         }
     }
