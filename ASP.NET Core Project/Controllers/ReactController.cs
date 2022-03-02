@@ -26,71 +26,30 @@ namespace ASP.NET_Core_Project.Controllers
         public JsonResult PersonList()
         {
             List<PersonEFModel> ListOfPersons = _context.People.ToList();
-            //List<PersonEFModel> ListOfPersons = _context.People.Include(p => p.City).ToList();
             return Json(ListOfPersons);
         }
-
-        public JsonResult PersonDetails(int id)
-        {
-            List<PersonEFModel> ListOfPersons = _context.People.Include(p => p.City).Include(p => p.Languages).ToList();
-            var PersonInfo = ListOfPersons.Where(x => x.PersonId == id).SingleOrDefault();
-            //try
-            //{
-            //    if (person.PersonId == 0)
-            //    {
-
-
-            PersonEFModel personObj = new PersonEFModel();
-            personObj.Name = PersonInfo.Name;
-            personObj.Phone = PersonInfo.Phone;
-            personObj.CityId = PersonInfo.CityId;
-            //personObj.City = PersonInfo.City;
-            //personObj.Languages = PersonInfo.Languages;
-
-            //personObj.City = person.City;
-            //personObj.Languages = person.Languages;
-            //        _context.People.Add(personObj);
-            //        _context.SaveChanges();
-            //        return Json(new { status = "Success", Message = "Record has been saved" });
-            //    }
-            //}
-            //catch { }
-            return Json(personObj);
-        }
-
+        
         public JsonResult GetById(int id)
         {
-            var PersonInfo = _context.People.Where(x => x.PersonId == id).SingleOrDefault();
-
-            //List<LanguageModel> ListOfLanguages = _context.Language.ToList();
-            //List<PersonEFModel> ListOfPersons = _context.People.Include(p => p.City).Include(p => p.Languages).ToList();
-            //var PersonInfo = ListOfPersons.Where(x => x.PersonId == id).SingleOrDefault();
-            
-            //Dictionary<string, string> personDictionary = new Dictionary<string, string>
-            //{
-            //    ["PersonId"] = PersonInfo.PersonId.ToString(),
-            //    ["Name"] = PersonInfo.Name,
-            //    ["Phone"] = PersonInfo.Phone,
-            //    ["CityId"] = PersonInfo.CityId.ToString(),
-            //    ["City"] = PersonInfo.City.City,
-            //    ["Language"] = PersonInfo.Languages[0].Language.Language
-            //};
-
+            List<CountryModel> Countries = _context.Country.ToList();
+            List<LanguageModel> ListOfLanguages = _context.Language.ToList();
+            List<PersonEFModel> ListOfPersons = _context.People.Include(p => p.City).Include(p => p.Languages).ToList();
+            var PersonInfo = ListOfPersons.Where(x => x.PersonId == id).SingleOrDefault();
             return Json(PersonInfo);
         }
 
         [HttpPost]
-        public JsonResult AddEditPerson(PersonEFModel person)
+        public JsonResult AddEditPerson(PersonEFModel data)
         {
             try
             {
-                if (person.PersonId == 0)
+                if (data.PersonId == 0)
                 {
                     //Add Person
                     PersonEFModel personObj = new PersonEFModel();
-                    personObj.Name = person.Name;
-                    personObj.Phone = person.Phone;
-                    personObj.CityId = person.CityId;
+                    personObj.Name = data.Name;
+                    personObj.Phone = data.Phone;
+                    personObj.CityId = data.CityId;
                     //personObj.City = data.City;
                     //personObj.Languages = data.Languages;
                     _context.People.Add(personObj);
@@ -100,12 +59,12 @@ namespace ASP.NET_Core_Project.Controllers
                 else
                 {
                     //Edit Person
-                    var Person = _context.People.Where(x => x.PersonId == person.PersonId).SingleOrDefault();
+                    var Person = _context.People.Where(x => x.PersonId == data.PersonId).SingleOrDefault();
                     if(Person.PersonId > 0)
                     {
-                        Person.Name = person.Name;
-                        Person.Phone = person.Phone;
-                        Person.CityId = person.CityId;
+                        Person.Name = data.Name;
+                        Person.Phone = data.Phone;
+                        Person.CityId = data.CityId;
                         //_context.SaveChanges();
                         return Json(new { status = "Success", Message = "Record Updated Successfully!" });
                     }
@@ -115,40 +74,40 @@ namespace ASP.NET_Core_Project.Controllers
             return Json(new { status = "Error", Message = "Data not saved" });
         }
 
-        [HttpPost]
-        public JsonResult AddPerson(PersonEFModel person)
-        {
-            try
-            {
-                if (person.PersonId == 0)
-                {
-                    //Add Person
-                    PersonEFModel personObj = new PersonEFModel();
-                    personObj.Name = person.Name;
-                    personObj.Phone = person.Phone;
-                    personObj.CityId = person.CityId;
-                    //personObj.City = data.City;
-                    //personObj.Languages = data.Languages;
-                    _context.People.Add(personObj);
-                    //_context.SaveChanges();
-                    return Json(new { status = "Success", Message = "Record has been saved" });
-                }
-                else
-                {
-                    //Edit Person
-                    var Person = _context.People.Where(x => x.PersonId == person.PersonId).SingleOrDefault();
-                    if (Person.PersonId > 0)
-                    {
-                        Person.Name = person.Name;
-                        Person.Phone = person.Phone;
-                        Person.CityId = person.CityId;
-                        //_context.SaveChanges();
-                        return Json(new { status = "Success", Message = "Record Updated Successfully!" });
-                    }
-                }
-            }
-            catch { }
-            return Json(new { status = "Error", Message = "Data not saved" });
-        }
+        //[HttpPost]
+        //public JsonResult AddPerson(PersonEFModel person)
+        //{
+        //    try
+        //    {
+        //        if (person.PersonId == 0)
+        //        {
+        //            //Add Person
+        //            PersonEFModel personObj = new PersonEFModel();
+        //            personObj.Name = person.Name;
+        //            personObj.Phone = person.Phone;
+        //            personObj.CityId = person.CityId;
+        //            //personObj.City = data.City;
+        //            //personObj.Languages = data.Languages;
+        //            _context.People.Add(personObj);
+        //            //_context.SaveChanges();
+        //            return Json(new { status = "Success", Message = "Record has been saved" });
+        //        }
+        //        else
+        //        {
+        //            //Edit Person
+        //            var Person = _context.People.Where(x => x.PersonId == person.PersonId).SingleOrDefault();
+        //            if (Person.PersonId > 0)
+        //            {
+        //                Person.Name = person.Name;
+        //                Person.Phone = person.Phone;
+        //                Person.CityId = person.CityId;
+        //                //_context.SaveChanges();
+        //                return Json(new { status = "Success", Message = "Record Updated Successfully!" });
+        //            }
+        //        }
+        //    }
+        //    catch { }
+        //    return Json(new { status = "Error", Message = "Data not saved" });
+        //}
     }
 }

@@ -2,7 +2,7 @@
     constructor(props) {
         super(props);
         this.state = {
-            Personlist: [{}],
+            Personlist: [],
             Id: "",
             IsModalOpen: false,
             IsDetailsModalOpen: false,
@@ -17,7 +17,7 @@
     getPerson = () => {
         fetch("/React/PersonList").then(response => response.json())
             .then(data => {
-                this.setState({ Personlist: data })
+                this.setState({ Personlist: data });
             })
     }
 
@@ -117,13 +117,12 @@ class AddEditPerson extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            PersonId: 0,
+            PersonId: '',
             Name: '',
             Phone: '',
-            CityId: 0
-            //City: '',
-            //Country: '',
-            //Language: ''
+            City: '',
+            Country: '',
+            Language: ''
         }
     }
 
@@ -136,8 +135,14 @@ class AddEditPerson extends React.Component {
                         PersonId: data.personId,
                         Name: data.name,
                         Phone: data.phone,
-                        CityId: data.cityId
+                        City: data.city.city,
+                        Country: data.city.country.country,
+                        Language: data.languages[0].language.language
                     })
+                    console.log("Submitted state.name", this.state.Name);
+                    console.log("Submitted state.city", this.state.City);
+                    console.log("Submitted state.country", this.state.Country);
+                    console.log("Submitted state.language", this.state.Language);
                 })
         }
     }
@@ -148,9 +153,10 @@ class AddEditPerson extends React.Component {
             PersonId: this.state.PersonId,
             Name: this.state.Name,
             Phone: this.state.Phone,
-            CityId: parseInt(this.state.CityId)
-            //City: this.state.City,
-            //Language: this.state.Language,
+            City: this.state.City,
+            Country: this.state.Country,
+            Language: this.state.Language,
+            //CityId: parseInt(this.state.CityId)
         }
 
         console.log("Submitted data", data);
@@ -195,35 +201,29 @@ class AddEditPerson extends React.Component {
                             <form>
                                 <div className="mb-3">
                                     <label htmlFor="txtName" className="col-form-label">Name</label>
-                                    <input type="text" className="form-control" id="txtName" name="Name" value={this.state.Name} onChange={this.onChange} />
+                                    <input type="text" className="form-control" id="txtName" name="Name" defaultValue={this.state.Name} onChange={this.onChange}  />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="txtPhone" className="col-form-label">Phone</label>
-                                    <input type="text" className="form-control" id="txtPhone" name="Phone" value={this.state.Phone} onChange={this.onChange} />
+                                    <input type="text" className="form-control" id="txtPhone" name="Phone" defaultValue={this.state.Phone} onChange={this.onChange}  />
                                 </div>
-                                {/*<div className="mb-3">*/}
-                                {/*    <label className="col-form-label">City</label>*/}
-                                {/*    <select asp-for="CityId" className="form-control" asp-items="ViewBag.CityId"></select>*/}
-                                {/*</div>*/}
                                 <div className="mb-3">
-                                    <label htmlFor="txtCity" className="col-form-label">CityId</label>
-                                    <input type="number" className="form-control" id="txtCity" name="CityId" value={this.state.CityId} onChange={this.onChange} />
+                                    <label htmlFor="txtCity" className="col-form-label">City</label>
+                                    <input type="text" className="form-control" id="txtCity" name="City" defaultValue={this.state.City} onChange={this.onChange}  />
                                 </div>
-                                {/*<div className="mb-3">*/}
-                                {/*    <label htmlFor="txtCountry" className="col-form-label">Country</label>*/}
-                                {/*    <input type="text" className="form-control" id="txtCountry" name="Country" value={this.state.Country} onChange={this.onChange} />*/}
-                                {/*</div>*/}
-                                {/*<div className="mb-3">*/}
-                                {/*    <label htmlFor="txtLanguage" className="col-form-label">Language</label>*/}
-                                {/*    <input type="text" className="form-control" id="txtLanguage" name="Language" value={this.state.Language} onChange={this.onChange} />*/}
-                                {/*</div>*/}
+                                <div className="mb-3">
+                                    <label htmlFor="txtCountry" className="col-form-label">Country</label>
+                                    <input type="text" className="form-control" id="txtCountry" name="Country" defaultValue={this.state.Country} onChange={this.onChange}  />
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="txtLanguage" className="col-form-label">Language</label>
+                                    <input type="text" className="form-control" id="txtLanguage" name="Language" defaultValue={this.state.Language} onChange={this.onChange}  />
+                                </div>
                             </form>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={this.props.CloseModal}>Close</button>
                             <button type="button" className="btn btn-primary btn-block" onClick={this.onSubmit}>Save</button>
-
-
                             {/*<input type="submit" value="Save" className="btn btn-primary btn-block" />*/}
                         </div>
                     </div>
@@ -232,7 +232,6 @@ class AddEditPerson extends React.Component {
         )
     }
 }
-
 
 
 class DeletePerson extends React.Component {
@@ -279,10 +278,9 @@ class PersonDetails extends React.Component {
             PersonId: 0,
             Name: '',
             Phone: '',
-            CityId: ''
-            //City: '',
-            //Country: '',
-            //Language: ''
+            City: '',
+            Country: '',
+            Language: ''
         }
     }
 
@@ -296,13 +294,10 @@ class PersonDetails extends React.Component {
                         PersonId: data.personId,
                         Name: data.name,
                         Phone: data.phone,
-                        CityId: data.cityId,
-                        //City: data.city,
-                        //Country: data.country,
-                        //Language: data.language
+                        City: data.city.city,
+                        Country: data.city.country.country,
+                        Language: data.languages[0].language.language
                     })
-                    console.log("Submitted state.name", this.state.Name);
-                    console.log("Submitted state.cityId", this.state.CityId);
                 })
         }
     }
@@ -330,23 +325,17 @@ class PersonDetails extends React.Component {
                                     <input type="text" className="form-control" id="txtPhone" name="Phone" defaultValue={this.state.Phone} />
                                 </div>
                                 <div className="mb-3">
-                                    <label htmlFor="txtCityId" className="col-form-label">CityId</label>
-                                    <input type="text" className="form-control" id="txtCityId" name="CityId" defaultValue={this.state.CityId} />
-                                    {/*<select asp-for="CityId" className="form-control" asp-items="ViewBag.CityId"></select>*/}
+                                    <label htmlFor="txtCity" className="col-form-label">City</label>
+                                    <input type="text" className="form-control" id="txtCity" name="City" defaultValue={this.state.City}/>
                                 </div>
-                                {/*<div className="mb-3">*/}
-                                {/*    <label htmlFor="txtCity" className="col-form-label">City</label>*/}
-                                {/*    <input type="text" className="form-control" id="txtCity" name="City" defaultValue={this.state.City}/>*/}
-                                {/*    */}{/*<select asp-for="City" className="form-control" asp-items="ViewBag.City"></select>*/}
-                                {/*</div>*/}
-                                {/*<div className="mb-3">*/}
-                                {/*    <label htmlFor="txtCountry" className="col-form-label">Country</label>*/}
-                                {/*    <input type="text" className="form-control" id="txtCountry" name="Country" defaultValue={this.state.Country}/>*/}
-                                {/*</div>*/}
-                                {/*<div className="mb-3">*/}
-                                {/*    <label htmlFor="txtLanguage" className="col-form-label">Language</label>*/}
-                                {/*    <input type="text" className="form-control" id="txtLanguage" name="Language" defaultValue={this.state.Language}/>*/}
-                                {/*</div>*/}
+                                <div className="mb-3">
+                                    <label htmlFor="txtCountry" className="col-form-label">Country</label>
+                                    <input type="text" className="form-control" id="txtCountry" name="Country" defaultValue={this.state.Country}/>
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="txtLanguage" className="col-form-label">Language</label>
+                                    <input type="text" className="form-control" id="txtLanguage" name="Language" defaultValue={this.state.Language}/>
+                                </div>
                             </form>
                         </div>
                         <div className="modal-footer">
