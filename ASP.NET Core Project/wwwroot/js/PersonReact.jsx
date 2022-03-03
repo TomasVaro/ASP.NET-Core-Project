@@ -232,7 +232,6 @@ class AddEditPerson extends React.Component {
 class DeletePerson extends React.Component {
     constructor(props) {
         super(props)
-
         }
     onDelete = () => {
         fetch("/PeopleEF/DeletePerson?id=" + this.props.id)
