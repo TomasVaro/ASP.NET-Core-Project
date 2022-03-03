@@ -148,7 +148,6 @@ class AddEditPerson extends React.Component {
     }
 
     onSubmit = () => {
-        /*e.preventDefault();*/
         const data = {
             PersonId: this.state.PersonId,
             Name: this.state.Name,
@@ -221,7 +220,6 @@ class AddEditPerson extends React.Component {
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={this.props.CloseModal}>Close</button>
                             <button type="button" className="btn btn-primary btn-block" onClick={this.onSubmit}>Save</button>
-                            {/*<input type="submit" value="Save" className="btn btn-primary btn-block" />*/}
                         </div>
                     </div>
                 </div>
