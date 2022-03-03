@@ -117,7 +117,7 @@ class AddEditPerson extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            PersonId: '',
+            PersonId: 0,
             Name: '',
             Phone: '',
             City: '',
@@ -147,8 +147,8 @@ class AddEditPerson extends React.Component {
         }
     }
 
-    onSubmit = (e) => {
-        e.preventDefault();
+    onSubmit = () => {
+        /*e.preventDefault();*/
         const data = {
             PersonId: this.state.PersonId,
             Name: this.state.Name,
@@ -156,7 +156,6 @@ class AddEditPerson extends React.Component {
             City: this.state.City,
             Country: this.state.Country,
             Language: this.state.Language,
-            //CityId: parseInt(this.state.CityId)
         }
 
         console.log("Submitted data", data);
@@ -170,12 +169,10 @@ class AddEditPerson extends React.Component {
             .then(response => response.json())
             .then(data => {
                 console.log("Success", data.success);
-                alert(data.Message)
                 window.location.href = "/React/Index";
             })
             .catch((error) => {
                 console.log("Error", data.error);
-                alert(data.Message)
             })
     }
 

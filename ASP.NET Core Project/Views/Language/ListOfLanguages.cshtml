@@ -12,13 +12,13 @@
             <th>
                 @Html.DisplayNameFor(model => model.Language)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Persons)
+            </th>
             @if (User.IsInRole("Admin"))
             {
                 <th>Action</th>
             }
-            <th>
-                @Html.DisplayNameFor(model => model.Persons)
-            </th>
         </tr>
     </thead>    
     <tbody>
