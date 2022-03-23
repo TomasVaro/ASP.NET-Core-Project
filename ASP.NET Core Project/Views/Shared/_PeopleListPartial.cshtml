@@ -1,0 +1,20 @@
+﻿@model PersonModel
+<div class="row">
+    @if (User.IsInRole("Admin"))
+    {
+        <div class="col-md-3">@Model.Name</div>
+        <div class="col-md-3">@Model.Phone</div>
+        <div class="col-md-3">@Model.City</div>
+
+        <div class="col-md-3">
+            <a href="#" onclick="location.href = '@Url.Action("DeletePerson", "People", new { id=Model.PersonId })'">Delete</a>
+
+        </div>
+    }
+    @if (User.IsInRole("User"))
+    {
+        <div class="col-md-4">@Model.Name</div>
+        <div class="col-md-4">@Model.Phone</div>
+        <div class="col-md-4">@Model.City</div>
+    }
+</div>

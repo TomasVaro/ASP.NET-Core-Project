@@ -1,0 +1,25 @@
+﻿@model List<PersonModel>
+<div class="container">
+    <h3>List of people</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>City</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var person in Model)
+            {
+                <tr>
+                    <td>@person.PersonId</td>
+                    <td>@person.Name</td>
+                    <td>@person.Phone</td>
+                    <td>@person.City</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

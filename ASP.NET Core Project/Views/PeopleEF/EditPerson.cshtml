@@ -1,0 +1,58 @@
+﻿@model PersonEFModel
+
+@{
+    ViewData["Title"] = "EditPerson";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit Person</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.City.City)
+            </td>
+        </tr>
+    </tbody>
+</table>
+<form asp-action="EditChoosenPerson" method="post" role="form">
+    @Html.AntiForgeryToken()
+    <h3>Edit Person:</h3>
+    <input type="hidden" asp-for="PersonId" />
+    <label asp-for="Name"></label>
+    <input asp-for="Name" />
+    <span asp-validation-for="Name"></span>
+    <br>
+    <label asp-for="Phone"></label>
+    <input asp-for="Phone" />
+    <span asp-validation-for="Phone"></span>
+    <br>
+    <br>
+    <label class="control-label">City:</label>
+    <select asp-for="CityId" class="form-control" asp-items="ViewBag.CityId" style="width:min-content"></select>
+    <br>
+    <input type="submit" class="btn btn-success" name="btnEditPerson" value="OK" />
+</form>
+<br>
+<div>
+    <a asp-controller="PeopleEF" asp-action="ListOfPeopleEF">Back to People List</a>
+</div>

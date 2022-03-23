@@ -1,0 +1,22 @@
+﻿@model LanguageModel
+
+@{
+    ViewData["Title"] = "EditLanguage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit Language</h1>
+<form asp-action="EditLanguage" method="post" role="form">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="LanguageId" />
+    <label asp-for="Language"></label>
+    <input asp-for="Language" />
+    <span asp-validation-for="Language"></span>
+    <br>
+    <br>
+    <input type="submit" class="btn btn-success" name="btnEditLanguage" value="OK" />
+</form>
+<br>
+<div>
+    <a asp-controller="Language" asp-action="ListOfLanguages">Back to Language List</a>
+</div>

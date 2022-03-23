@@ -1,0 +1,39 @@
+﻿@model IEnumerable<CountryModel>
+
+@{
+    ViewData["Title"] = "List of Countries";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>List of Countries</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Country)</th>
+            @if (User.IsInRole("Admin"))
+            {
+                <th>Action</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Country)
+            </td>
+            @if (User.IsInRole("Admin"))
+            {
+                <td>
+                    <a href="#" onclick="location.href = '@Url.Action("DeleteCountry", "Country", new { id=item.CountryId })'">Delete</a>
+                    <a href="#" onclick="location.href = '@Url.Action("EditCountry", "Country", new { id=item.CountryId })'">Edit</a>
+                </td>
+            }
+        </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <a asp-controller="PeopleEF" asp-action="ListOfPeopleEF">Back to People List</a>
+</div>

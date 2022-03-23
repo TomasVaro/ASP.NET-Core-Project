@@ -1,0 +1,17 @@
+﻿<div>
+    <h3>JQuery with Ajax functions</h3>
+    <div>
+        <input type="button" class="btn btn-primary" onclick="getAllPersons()" value="People" />
+
+        <label for="PersonIdInputLabel">Person ID</label>
+        <input id="PersonIdInput" type="number" />
+
+        <input type="button" class="btn btn-info" onclick="getPersonByID()" value="Details" />
+        @if (User.IsInRole("Admin"))
+        {
+            <input type="button" class="btn btn-danger" onclick="deletePersonByID()" value="Delete" />
+        }
+        <div id="errorMessages"></div>
+    </div>
+    <div id="PersonList"></div>
+</div>

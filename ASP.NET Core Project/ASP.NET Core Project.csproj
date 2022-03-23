@@ -6,12 +6,79 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="wwwroot\" />
+    <Compile Remove="Migrations\20211130181759_AddedSeeding.cs" />
+    <Compile Remove="Migrations\20211130181759_AddedSeeding.Designer.cs" />
+    <Compile Remove="Migrations\20211202074733_Added tabels City and Country.cs" />
+    <Compile Remove="Migrations\20211202074733_Added tabels City and Country.Designer.cs" />
+    <Compile Remove="Migrations\20211202080308_FirstMigration.cs" />
+    <Compile Remove="Migrations\20211202080308_FirstMigration.Designer.cs" />
+    <Compile Remove="Migrations\20211202081027_First Migration.cs" />
+    <Compile Remove="Migrations\20211202081027_First Migration.Designer.cs" />
+    <Compile Remove="Migrations\20211202092849_Seeded some data.cs" />
+    <Compile Remove="Migrations\20211202092849_Seeded some data.Designer.cs" />
+    <Compile Remove="Migrations\20211202095127_First Migration.cs" />
+    <Compile Remove="Migrations\20211202095127_First Migration.Designer.cs" />
+    <Compile Remove="Migrations\20211202113509_Seeding FK.cs" />
+    <Compile Remove="Migrations\20211202113509_Seeding FK.Designer.cs" />
+    <Compile Remove="Migrations\20211202124958_Seeding FK.cs" />
+    <Compile Remove="Migrations\20211202124958_Seeding FK.Designer.cs" />
+    <Compile Remove="Migrations\20211202125442_Seeding FK.cs" />
+    <Compile Remove="Migrations\20211202125442_Seeding FK.Designer.cs" />
+    <Compile Remove="Migrations\20211202130534_Seeding FK.cs" />
+    <Compile Remove="Migrations\20211202130534_Seeding FK.Designer.cs" />
+    <Compile Remove="Migrations\20211202131125_Seeding FK.cs" />
+    <Compile Remove="Migrations\20211202131125_Seeding FK.Designer.cs" />
+    <Compile Remove="Migrations\20211203125905_Added Association table andd seeded.cs" />
+    <Compile Remove="Migrations\20211203125905_Added Association table andd seeded.Designer.cs" />
+    <Compile Remove="Migrations\20211203131304_Added Association table and Seeded.cs" />
+    <Compile Remove="Migrations\20211203131304_Added Association table and Seeded.Designer.cs" />
+    <Compile Remove="Migrations\20211203131608_Added Association table and Seeded.cs" />
+    <Compile Remove="Migrations\20211203131608_Added Association table and Seeded.Designer.cs" />
+    <Compile Remove="Migrations\20211203132133_Added Association table and Seeded.cs" />
+    <Compile Remove="Migrations\20211203132133_Added Association table and Seeded.Designer.cs" />
+    <Compile Remove="Migrations\20211207120527_Added properties to User Object.cs" />
+    <Compile Remove="Migrations\20211207120527_Added properties to User Object.Designer.cs" />
+    <Compile Remove="Migrations\20211208083844_Seeded Amin Role and Id.cs" />
+    <Compile Remove="Migrations\20211208083844_Seeded Amin Role and Id.Designer.cs" />
+    <Compile Remove="Migrations\20211208084709_Seeded Amin Role and Id.cs" />
+    <Compile Remove="Migrations\20211208084709_Seeded Amin Role and Id.Designer.cs" />
+    <Compile Remove="Migrations\20211208120452_Seeded Amin Role and User.cs" />
+    <Compile Remove="Migrations\20211208120452_Seeded Amin Role and User.Designer.cs" />
+    <Compile Remove="Migrations\20211209151213_Seeding data.cs" />
+    <Compile Remove="Migrations\20211209151213_Seeding data.Designer.cs" />
+    <Compile Remove="Migrations\20211209152915_Seeding data.cs" />
+    <Compile Remove="Migrations\20211209152915_Seeding data.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\PersonScript.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\js\PersonScript.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JavaScriptEngineSwitcher.Extensions.MsDependencyInjection" Version="3.3.0" />
+    <PackageReference Include="JavaScriptEngineSwitcher.V8" Version="3.17.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.21" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.21" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.22" />
+    <PackageReference Include="Microsoft.ClearScript.V8.Native.win-x64" Version="7.2.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.21" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.21" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.21">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="3.1.21" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+    <PackageReference Include="React.AspNet" Version="5.2.12" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,70 @@
+﻿@model IEnumerable<PersonEFModel>
+@{
+    ViewData["Title"] = "ListOfPeople";
+}<div class="container">
+    <h2>People Index</h2>
+    <h3>List of people</h3>
+    @if (User.IsInRole("Admin"))
+    {
+        <a asp-controller="Country" asp-action="ListOfCountries">List Countries</a>
+        <br>
+        <a asp-controller="City" asp-action="ListOfCities">List Cities</a>
+        <br>
+    }
+    <a asp-controller="Language" asp-action="ListOfLanguages">List Languages</a>
+    <br>
+    <a asp-action="AddPerson">Add Person</a>
+    <br>
+    @if (User.IsInRole("Admin"))
+    {
+        <a asp-controller="Country" asp-action="AddCountry">Add Country</a>
+        <br>
+        <a asp-controller="City" asp-action="AddCity">Add City</a>
+        <br>
+        <a asp-controller="Language" asp-action="AddLanguage">Add Language</a>
+        <br>
+    }
+    <a asp-controller="Language" asp-action="AddDeleteLanguagePerson">Add/Delete Language to/from Person</a>
+    <br>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>City</th>
+                <th>Country</th>    
+                <th>Languages</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var person in Model)
+            {
+            <tr>
+                <td>@person.Name</td>
+                <td>@person.Phone</td>
+                <td>@person.City.City</td>
+                <td>@person.City.Country.Country</td>
+                <td>
+                    @if (person.Languages != null)
+                    {
+                        @foreach (var l in person.Languages)
+                        {
+                            @Html.DisplayFor(modelItem => l.Language.Language)
+                            <br>
+                        }
+                    }
+                </td>
+                <td>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a href="#" onclick="location.href = '@Url.Action("DeletePerson", "PeopleEF", new { id=person.PersonId })'">Delete</a>
+                    }
+                    <a href="#" onclick="location.href = '@Url.Action("EditPerson", "PeopleEF", new { id=person.PersonId })'">Edit</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
